@@ -3,10 +3,6 @@ variable "function_name" {
   type = string
 }
 
-variable "tag_prefix" {
-  description = "Set this to your tag prefix"
-  type        = string
-}
 
 variable "handler" {
   type = string
@@ -135,6 +131,7 @@ variable "vpc_config" {
   type = object({
     subnet_env   = string
     subnet_tier  = string
+    tag_prefix   = string
   })
   default = null
 }
