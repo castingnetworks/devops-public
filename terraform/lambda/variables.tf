@@ -35,6 +35,7 @@ variable "artifact_zip_key" {
 
 # Optional variables specific to this module.
 
+
 variable "build_command" {
   description = "The command to run to create the Lambda package zip file"
   type        = string
