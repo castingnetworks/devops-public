@@ -46,11 +46,6 @@ variable "receive_wait_time_seconds" {
   default     = 0
 }
 
-variable "policy" {
-  description = "The JSON policy for the SQS queue"
-  type        = string
-  default     = ""
-}
 
 variable "redrive_policy" {
   description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"

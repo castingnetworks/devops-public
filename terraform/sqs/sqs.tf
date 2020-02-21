@@ -9,7 +9,25 @@ resource "aws_sqs_queue" "this" {
   max_message_size            = var.max_message_size
   delay_seconds               = var.delay_seconds
   receive_wait_time_seconds   = var.receive_wait_time_seconds
-  policy                      = var.policy
+  policy                      = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "1",
+      "Effect": "Allow",
+      "Principal": {
+         "AWS": [
+            "${data.aws_caller_identity.current.account_id}"
+         ]
+      },
+      "Action": "SQS:*",
+      "Resource": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.name}"
+    }
+  ]
+}
+  POLICY
+
   redrive_policy              = var.redrive_policy
   fifo_queue                  = var.fifo_queue
   content_based_deduplication = var.content_based_deduplication
