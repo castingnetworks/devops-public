@@ -1,7 +1,11 @@
 # Required variables.
-
 variable "function_name" {
   type = string
+}
+
+variable "tag_prefix" {
+  description = "Set this to your tag prefix"
+  type        = string
 }
 
 variable "handler" {
@@ -10,11 +14,6 @@ variable "handler" {
 
 variable "runtime" {
   type = string
-}
- 
-variable "lambda_event_type" {
-  description = "Type of event for lambda to be triggered by ex: dynamodb, kinesis, sqs"
-  type        = string
 }
 
 variable "artifact_bucket" {
@@ -35,19 +34,6 @@ variable "artifact_zip_key" {
 
 # Optional variables specific to this module.
 
-
-variable "build_command" {
-  description = "The command to run to create the Lambda package zip file"
-  type        = string
-  default     = "python build.py '$filename' '$runtime' '$source'"
-}
-
-variable "build_paths" {
-  description = "The files or directories used by the build command, to trigger new Lambda package builds whenever build scripts change"
-  type        = list(string)
-  default     = ["build.py"]
-}
-
 variable "cloudwatch_logs" {
   description = "Set this to false to disable logging your Lambda output to CloudWatch Logs"
   type        = bool
@@ -59,6 +45,7 @@ variable "lambda_at_edge" {
   type        = bool
   default     = false
 }
+
 
 variable "policy" {
   description = "An additional policy to attach to the Lambda function role"
@@ -146,8 +133,15 @@ variable "tracing_config" {
 
 variable "vpc_config" {
   type = object({
-    security_group_ids = list(string)
-    subnet_ids         = list(string)
+    subnet_env   = string
+    subnet_tier  = string
+  })
+  default = null
+}
+
+variable "lambda_event" {
+ type = object({
+    event_source_arn  = string
   })
   default = null
 }

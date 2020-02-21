@@ -41,8 +41,8 @@ resource "aws_lambda_function" "lambda" {
   dynamic "vpc_config" {
     for_each = var.vpc_config == null ? [] : [var.vpc_config]
     content {
-      security_group_ids = vpc_config.value.security_group_ids
-      subnet_ids         = vpc_config.value.subnet_ids
+      security_group_ids = data.aws_security_groups.lambda[0].ids
+      subnet_ids         = data.aws_subnet_ids.lambda[0].ids
     }
   }
 }
@@ -53,11 +53,11 @@ data "aws_s3_bucket_object" "lambda_hash" {
   key    = var.artifact_hash_key
 }
 
-
-# Setup Alias
-resource "aws_lambda_alias" "lambda" {
-  name             = "live"
-  function_name    = aws_lambda_function.lambda.arn
-  function_version = aws_lambda_function.lambda.version
+# Setup Events if necessary
+resource "aws_lambda_event_source_mapping" "lambda" {
+  count   = var.lambda_event == null ? 0 : 1
+  enabled = true
+  event_source_arn = var.lambda_event.event_source_arn
+  function_name = aws_lambda_function.lambda.arn
 }
 
