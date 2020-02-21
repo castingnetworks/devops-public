@@ -10,7 +10,11 @@ resource "aws_lambda_function" "lambda" {
   timeout                        = local.timeout
   publish                        = local.publish
   tags                           = var.tags
-  
+  source_code_hash               = data.aws_s3_bucket_object.lambda_hash.body
+  s3_bucket                      = var.artifact_bucket
+  s3_key                         = var.artifact_zip_key
+
+
   # Add dynamic blocks based on variables.
 
   dynamic "dead_letter_config" {
@@ -46,8 +50,9 @@ resource "aws_lambda_function" "lambda" {
 # Get checksum of artifact
 data "aws_s3_bucket_object" "lambda_hash" {
   bucket = var.artifact_bucket
-  key    = var.artifact_hash
+  key    = var.artifact_hash_key
 }
+
 
 # Setup Alias
 resource "aws_lambda_alias" "lambda" {

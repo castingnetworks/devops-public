@@ -11,11 +11,27 @@ variable "handler" {
 variable "runtime" {
   type = string
 }
-
-variable "source_path" {
-  description = "The absolute path to a local file or directory containing your Lambda source code"
+ 
+variable "lambda_event_type" {
+  description = "Type of event for lambda to be triggered by ex: dynamodb, kinesis, sqs"
   type        = string
 }
+
+variable "artifact_bucket" {
+  description = "S3 Bucket with Lambda Artifacts"
+  type        = string
+}
+
+variable "artifact_hash_key" {
+  description = "S3 Key Location of artifact checksum hash file"
+  type        = string
+}
+
+variable "artifact_zip_key" {
+  description = "S3 Key Location of artifact zip file"
+  type        = string
+}
+
 
 # Optional variables specific to this module.
 
