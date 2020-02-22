@@ -42,5 +42,5 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
   name       = "${var.name}-subnets"
-  subnet_ids = data.aws_subnet_ids.lambda.ids
+  subnet_ids = data.aws_subnet_ids.redis.ids
 }

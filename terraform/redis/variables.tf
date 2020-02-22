@@ -40,7 +40,7 @@ variable "redis_clusters" {
 
 variable "redis_failover" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "redis_node_type" {
@@ -54,21 +54,20 @@ variable "redis_port" {
   default = 6379
 }
 
-variable "subnets" {
-  type        = list(string)
-  description = "List of VPC Subnet IDs for the cache subnet group"
+variable "tag_prefix" {
+  type    = string
 }
+
+variable "env" {
+  type    = string
+}
+
 
 # might want a map
 variable "redis_version" {
   description = "Redis version to use, defaults to 3.2.10"
   type        = string
   default     = "3.2.10"
-}
-
-variable "vpc_id" {
-  description = "VPC ID"
-  type        = string
 }
 
 variable "redis_parameters" {
@@ -92,7 +91,7 @@ variable "redis_snapshot_window" {
 variable "redis_snapshot_retention_limit" {
   description = "The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted. If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off. Please note that setting a snapshot_retention_limit is not supported on cache.t1.micro or cache.t2.* cache nodes"
   type        = number
-  default     = 0
+  default     = 7
 }
 
 variable "tags" {

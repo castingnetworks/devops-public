@@ -6,7 +6,7 @@ resource "aws_security_group" "redis_security_group" {
 }
 
 resource "aws_security_group_rule" "redis_ingress" {
-  count                    = length(var.allowed_security_groups)
+  count                    = length(data.aws_security_groups.redis.ids)
   type                     = "ingress"
   from_port                = var.redis_port
   to_port                  = var.redis_port
@@ -20,6 +20,8 @@ resource "aws_security_group_rule" "redis_networks_ingress" {
   from_port         = var.redis_port
   to_port           = var.redis_port
   protocol          = "tcp"
-  cidr_blocks       = data.aws_vpc.redis.cidr_block
+  cidr_blocks       = [
+    data.aws_vpc.redis.cidr_block
+  ]
   security_group_id = aws_security_group.redis_security_group.id
 }
