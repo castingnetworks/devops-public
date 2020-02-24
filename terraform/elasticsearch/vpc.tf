@@ -70,9 +70,10 @@ resource "aws_elasticsearch_domain" "es_vpc" {
     dedicated_master_enabled = var.instance_count >= var.dedicated_master_threshold ? true : false
     dedicated_master_count   = var.instance_count >= var.dedicated_master_threshold ? 3 : 0
     dedicated_master_type    = var.instance_count >= var.dedicated_master_threshold ? var.dedicated_master_type != "false" ? var.dedicated_master_type : var.instance_type : ""
-    zone_awareness_enabled   = var.es_zone_awareness
+    zone_awareness_enabled   = var.instance_count > 1 ? true : false
     zone_awareness_config {
-      availability_zone_count = var.es_zone_awareness_count
+      // This will not be looked unless zone_awareness_enabled is false
+      availability_zone_count = var.instance_count > 1 ? var.instance_count : 3
     }
   }
 
@@ -97,7 +98,7 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   }
 
   vpc_options {
-    subnet_ids         = data.aws_subnet_ids.es[0].ids
+    subnet_ids         = slice(tolist(data.aws_subnet_ids.es[0].ids), 0, var.instance_count)
     security_group_ids = data.aws_security_groups.es[0].ids
   }
 
