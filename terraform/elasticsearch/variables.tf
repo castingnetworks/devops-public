@@ -52,18 +52,6 @@ variable "management_public_ip_addresses" {
   default     = []
 }
 
-variable "es_zone_awareness" {
-  description = "Enable zone awareness for Elasticsearch cluster (default false)"
-  type        = bool
-  default     = false
-}
-
-variable "es_zone_awareness_count" {
-  description = "Number of availability zones used for data nodes (default 2)"
-  type        = number
-  default     = 1
-}
-
 variable "ebs_volume_size" {
   description = "Optionally use EBS volumes for data storage by specifying volume size in GB (default 0)"
   type        = number

@@ -38,11 +38,6 @@ variable "redis_clusters" {
   default     = 1
 }
 
-variable "redis_failover" {
-  type    = bool
-  default = false
-}
-
 variable "redis_node_type" {
   description = "Instance type to use for creating the Redis cache clusters"
   type        = string
