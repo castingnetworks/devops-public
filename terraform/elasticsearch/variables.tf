@@ -124,7 +124,9 @@ variable "dedicated_master_threshold" {
 variable "advanced_options" {
   description = "Map of key-value string pairs to specify advanced configuration options. Note that the values for these configuration options must be strings (wrapped in quotes) or they may be wrong and cause a perpetual diff, causing Terraform to want to recreate your Elasticsearch domain on every apply."
   type        = map(string)
-  default     = {}
+  default     = {
+    "rest.action.multi.allow_explicit_index" = true
+  }
 }
 
 variable "log_publishing_options" {
