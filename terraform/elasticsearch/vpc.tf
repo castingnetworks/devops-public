@@ -34,8 +34,8 @@ data "aws_iam_policy_document" "es_vpc_management_access" {
 
 
     resources = [
-      aws_elasticsearch_domain.es_vpc.arn,
-      "${aws_elasticsearch_domain.es_vpc.arn}/*",
+      aws_elasticsearch_domain.es_vpc[0].arn,
+      "${aws_elasticsearch_domain.es_vpc[0].arn}/*",
     ]
 
     principals {
