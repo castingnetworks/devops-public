@@ -1,7 +1,7 @@
 variable "create_iam_service_linked_role" {
   description = "Whether to create IAM service linked role for AWS ElasticSearch service. Can be only one per AWS account."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "domain_name" {
@@ -61,7 +61,7 @@ variable "es_zone_awareness" {
 variable "es_zone_awareness_count" {
   description = "Number of availability zones used for data nodes (default 2)"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "ebs_volume_size" {
@@ -85,7 +85,7 @@ variable "kms_key_id" {
 variable "snapshot_start_hour" {
   description = "Hour at which automated snapshots are taken, in UTC (default 0)"
   type        = number
-  default     = 0
+  default     = 12
 }
 
 variable "vpc_config" {

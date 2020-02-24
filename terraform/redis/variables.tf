@@ -99,3 +99,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "subnet_group_name" {
+  description = "Subnet Group Name"
+  type        = string
+}
