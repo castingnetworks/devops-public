@@ -7,7 +7,7 @@ data "aws_vpc" "lambda" {
 
 data "aws_subnet_ids" "lambda" {
   count   = var.vpc_config == null ? 0 : 1
-  vpc_id = data.aws_vpc.es[0].id
+  vpc_id = data.aws_vpc.lambda[0].id
   tags = {
     "${var.vpc_config.subnet_tag}" = var.vpc_config.subnet_value
   }

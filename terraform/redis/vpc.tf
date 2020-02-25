@@ -7,7 +7,7 @@ data "aws_vpc" "redis" {
 
 data "aws_subnet_ids" "redis" {
   count   = var.vpc_config == null ? 0 : 1
-  vpc_id = data.aws_vpc.es[0].id
+  vpc_id = data.aws_vpc.redis[0].id
   tags = {
     "${var.vpc_config.subnet_tag}" = var.vpc_config.subnet_value
   }
