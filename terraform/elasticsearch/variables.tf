@@ -34,7 +34,7 @@ variable "dedicated_master_type" {
   default     = "false"
 }
 
-variable "encrypt_at_rest" {
+variable "at_rest_encryption_enabled" {
   description = "Enable encrption at rest (only specific instance family types support it: m4, c4, r4, i2, i3 default: false)"
   type        = bool
   default     = false
