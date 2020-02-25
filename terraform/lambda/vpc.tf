@@ -16,7 +16,7 @@ data "aws_subnet_ids" "lambda" {
 data "aws_security_groups" "lambda" {
   count   = var.vpc_config == null ? 0 : 1
   tags = {
-   "${var.vpc_config.sg_tag}"  = var.vpc_config.sg_value,
+    "${var.vpc_config.sg_tag}"  = var.vpc_config.sg_value,
     "${var.vpc_config.env_tag}" = var.vpc_config.env_value
   }
 }
