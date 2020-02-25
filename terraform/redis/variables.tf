@@ -49,9 +49,6 @@ variable "redis_port" {
   default = 6379
 }
 
-variable "tag_prefix" {
-  type    = string
-}
 
 variable "env" {
   type    = string
