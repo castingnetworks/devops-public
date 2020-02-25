@@ -78,9 +78,12 @@ variable "snapshot_start_hour" {
 
 variable "vpc_config" {
   type = object({
-    subnet_env   = string
-    subnet_tier  = string
-    tag_prefix   = string
+    env_tag       = string
+    env_value     = string
+    subnet_tag    = string
+    subnet_value  = string
+    sg_tag        = string
+    sg_value      = string
   })
   default = null
 }

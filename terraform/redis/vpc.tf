@@ -1,19 +1,21 @@
 data "aws_vpc" "redis" {
+  count   = var.vpc_config == null ? 0 : 1
   tags = {
-    "${var.tag_prefix}/env" = var.env
+    var.vpc_config.env_tag = var.vpc_config.env_value
   }
 }
 
 data "aws_subnet_ids" "redis" {
-  vpc_id = data.aws_vpc.redis.id
+  count   = var.vpc_config == null ? 0 : 1
+  vpc_id = data.aws_vpc.es[0].id
   tags = {
-    "${var.tag_prefix}/subnet-tier" = "private"
-  }
+    var.vpc_config.subnet_tag = var.vpc_config.subnet_value
 }
 
 data "aws_security_groups" "redis" {
+  count   = var.vpc_config == null ? 0 : 1
   tags = {
-    "${var.tag_prefix}/default-sg-private" = "true",
-    "${var.tag_prefix}/env" = var.env
+    var.vpc_config.sg_tag  = var.vpc_config.sg_value,
+    var.vpc_config.env_tag = var.vpc_config.env_value
   }
 }

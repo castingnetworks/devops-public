@@ -4,7 +4,7 @@ does not handle properly null/empty "vpc_options" */
 data "aws_vpc" "es" {
   count   = var.vpc_config == null ? 0 : 1
   tags = {
-    "${var.vpc_config.tag_prefix}/env" = var.vpc_config.subnet_env
+    var.vpc_config.env_tag = var.vpc_config.env_value
   }
 }
 
@@ -12,15 +12,14 @@ data "aws_subnet_ids" "es" {
   count   = var.vpc_config == null ? 0 : 1
   vpc_id = data.aws_vpc.es[0].id
   tags = {
-    "${var.vpc_config.tag_prefix}/subnet-tier" = "private"
-  }
+    var.vpc_config.subnet_tag = var.vpc_config.subnet_value
 }
 
 data "aws_security_groups" "es" {
   count   = var.vpc_config == null ? 0 : 1
   tags = {
-    "${var.vpc_config.tag_prefix}/default-sg-private" = "true",
-    "${var.vpc_config.tag_prefix}/env" = var.vpc_config.subnet_env
+    var.vpc_config.sg_tag  = var.vpc_config.sg_value,
+    var.vpc_config.env_tag = var.vpc_config.env_value
   }
 }
 

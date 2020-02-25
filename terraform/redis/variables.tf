@@ -112,3 +112,16 @@ variable "transit_encryption_enabled" {
   type        = bool
   default     = false
 }
+
+
+variable "vpc_config" {
+  type = object({
+    env_tag       = string
+    env_value     = string
+    subnet_tag    = string
+    subnet_value  = string
+    sg_tag        = string
+    sg_value      = string
+  })
+  default = null
+}
