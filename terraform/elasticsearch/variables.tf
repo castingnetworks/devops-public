@@ -123,8 +123,22 @@ variable "log_publishing_options" {
   default     = []
 }
 
+variable "zone_awareness_config" {
+type = object({
+    availability_zone_count   = string
+  })
+  default = null
+}
+
 variable "node_to_node_encryption_enabled" {
   description = "Whether to enable node-to-node encryption."
   type        = bool
   default     = false
 }
+
+variable "zone_awareness_count" {
+  description = "Zone Awareness"
+  type        = string
+  default     = null
+}
+

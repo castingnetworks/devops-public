@@ -71,11 +71,17 @@ resource "aws_elasticsearch_domain" "es_vpc" {
     dedicated_master_count   = var.instance_count >= var.dedicated_master_threshold ? 3 : 0
     dedicated_master_type    = var.instance_count >= var.dedicated_master_threshold ? var.dedicated_master_type != "false" ? var.dedicated_master_type : var.instance_type : ""
     zone_awareness_enabled   = var.instance_count > 1 ? true : false
-    zone_awareness_config {
-      // This will not be looked unless zone_awareness_enabled is false
-      availability_zone_count = var.instance_count > 1 ? var.instance_count : 3
+
+   
+    dynamic "zone_awareness_config" {
+      for_each = var.zone_awareness_count == null ? [] : [var.zone_awareness_count]
+      content {
+        availability_zone_count   = var.zone_awareness_count
+      }
     }
   }
+
+
 
   advanced_options = var.advanced_options
 
