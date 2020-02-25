@@ -35,7 +35,7 @@ resource "aws_elasticsearch_domain" "es" {
   elasticsearch_version = var.es_version
 
   encrypt_at_rest {
-    enabled    = var.encrypt_at_rest
+    enabled    = (var.encrypt_at_rest == true) && (substr(string, var.instance_type, 1, 2) != "2" && substr(string, var.instance_type, 1, 2) != "3") ? true : false
     kms_key_id = var.kms_key_id
   }
 

@@ -99,3 +99,16 @@ variable "subnet_group_name" {
   description = "Subnet Group Name"
   type        = string
 }
+
+variable "at_rest_encryption_enabled" {
+  description = "At rest encryption"
+  type        = bool
+  default     = false
+}
+
+
+variable "transit_encryption_enabled" {
+  description = "Transit Encryption"
+  type        = bool
+  default     = false
+}
