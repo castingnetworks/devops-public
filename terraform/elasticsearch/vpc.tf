@@ -13,6 +13,7 @@ data "aws_subnet_ids" "es" {
   vpc_id = data.aws_vpc.es[0].id
   tags = {
     var.vpc_config.subnet_tag = var.vpc_config.subnet_value
+  }
 }
 
 data "aws_security_groups" "es" {
