@@ -59,8 +59,6 @@ resource "aws_lambda_event_source_mapping" "lambda-event" {
   enabled = true
   event_source_arn = var.lambda_event.event_source_arn
   function_name = aws_lambda_function.lambda.arn
-  batch_size = var.lambda_event.batch_size == null ? null : var.lambda_event.batch_size
-  maximum_batching_window_in_seconds = var.lambda_event.maximum_batching_window_in_seconds == null ? null : var.lambda_event.maximum_batching_window_in_seconds
 }
 
 resource "aws_lambda_event_source_mapping" "lambda_event_dynamo-kinesis" {
@@ -68,8 +66,6 @@ resource "aws_lambda_event_source_mapping" "lambda_event_dynamo-kinesis" {
   enabled = true
   event_source_arn = var.lambda_event_dynamo-kinesis.event_source_arn
   function_name = aws_lambda_function.lambda.arn
-  batch_size = var.lambda_event_dynamo-kinesis.batch_size
-  maximum_batching_window_in_seconds = var.lambda_event_dynamo-kinesis.maximum_batching_window_in_seconds
   starting_position = var.lambda_event_dynamo-kinesis.starting_position
   starting_position_timestamp = var.lambda_event_dynamo-kinesis.starting_position_timestamp
 }
