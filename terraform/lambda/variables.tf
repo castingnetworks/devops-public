@@ -63,25 +63,6 @@ locals {
 }
 
 # Optional attributes to pass through to the resource.
-variable "maximum_batching_window_in_seconds" {
-  type    = string
-  default = null
-}
-
-variable "batch_size" {
-  type    = string
-  default = null
-}
-
-variable "starting_position" {
-  type    = string
-  default = null
-}
-
-variable "starting_timestamp" {
-  type    = string
-  default = null
-}
 
 variable "description" {
   type    = string
@@ -161,6 +142,7 @@ variable "vpc_config" {
 variable "lambda_event" {
  type = object({
     event_source_arn  = string
+    starting position  = string
   })
   default = null
 }

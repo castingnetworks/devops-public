@@ -62,9 +62,9 @@ resource "aws_lambda_event_source_mapping" "lambda" {
   batch_size = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
 
-  for_each = var.starting_position == null ? [] : [var.starting_position]
+  for_each = var.lambda_event.starting_position == null ? [] : [var.lambda_event.starting_position]
   content {
-    starting_position  = var.starting_position
+    starting_position  = var.lambda_event.starting_position
   }
   
   for_each = var.starting_position_timestamp == null ? [] : [var.starting_position_timestamp]
