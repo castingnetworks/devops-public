@@ -66,10 +66,6 @@ resource "aws_lambda_event_source_mapping" "lambda" {
   content {
     starting_position  = var.lambda_event.starting_position
   }
-  
-  for_each = var.starting_position_timestamp == null ? [] : [var.starting_position_timestamp]
-  content {
-    starting_position_timestamp  = var.starting_position_timestamp
-  } 
+
 }
 
