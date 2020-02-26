@@ -63,6 +63,25 @@ locals {
 }
 
 # Optional attributes to pass through to the resource.
+variable "maximum_batching_window_in_seconds" {
+  type    = string
+  default = null
+}
+
+variable "batch_size" {
+  type    = string
+  default = null
+}
+
+variable "starting_position" {
+  type    = string
+  default = null
+}
+
+variable "starting_timestamp" {
+  type    = string
+  default = null
+}
 
 variable "description" {
   type    = string

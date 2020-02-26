@@ -59,5 +59,17 @@ resource "aws_lambda_event_source_mapping" "lambda" {
   enabled = true
   event_source_arn = var.lambda_event.event_source_arn
   function_name = aws_lambda_function.lambda.arn
+  batch_size = var.batch_size
+  maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
+
+  for_each = var.starting_position == null ? [] : [var.starting_position]
+  content {
+    starting_position  = var.starting_position
+  }
+  
+  for_each = var.starting_position_timestamp == null ? [] : [var.starting_position_timestamp]
+  content {
+    starting_position_timestamp  = var.starting_position_timestamp
+  } 
 }
 
