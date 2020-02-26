@@ -142,7 +142,7 @@ variable "vpc_config" {
 variable "lambda_event" {
  type = object({
     event_source_arn  = string
-    starting position  = string
+    starting_position = string
   })
   default = null
 }
