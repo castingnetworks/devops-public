@@ -54,18 +54,22 @@ data "aws_s3_bucket_object" "lambda_hash" {
 }
 
 # Setup Events if necessary
-resource "aws_lambda_event_source_mapping" "lambda" {
+resource "aws_lambda_event_source_mapping" "lambda-event" {
   count   = var.lambda_event == null ? 0 : 1
   enabled = true
   event_source_arn = var.lambda_event.event_source_arn
   function_name = aws_lambda_function.lambda.arn
-  batch_size = var.batch_size
-  maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
-
-  for_each = var.lambda_event.starting_position == null ? [] : [var.lambda_event.starting_position]
-  content {
-    starting_position  = var.lambda_event.starting_position
-  }
-
+  batch_size = var.lambda_event.batch_size
+  maximum_batching_window_in_seconds = var.lambda_event.maximum_batching_window_in_seconds
 }
 
+resource "aws_lambda_event_source_mapping" "lambda_event_dynamo-kinesis" {
+  count   = var.lambda_event_dynamo-kinesis == null ? 0 : 1
+  enabled = true
+  event_source_arn = var.lambda_event_dynamo-kinesis.event_source_arn
+  function_name = aws_lambda_function.lambda.arn
+  batch_size = var.lambda_event_dynamo-kinesis.batch_size
+  maximum_batching_window_in_seconds = var.lambda_event_dynamo-kinesis.maximum_batching_window_in_seconds
+  starting_position = var.lambda_event_dynamo-kinesis.starting_position
+  starting_position_timestamp = var.lambda_event_dynamo-kinesis.starting_position_timestamp
+}

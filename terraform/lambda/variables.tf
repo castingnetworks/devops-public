@@ -143,6 +143,20 @@ variable "lambda_event" {
  type = object({
     event_source_arn  = string
     starting_position = string
+    batch_size        = string
+    maximum_batching_window_in_seconds = string
+  })
+  default = null
+}
+
+variable "lambda_event_dynamo-kinesis" {
+ type = object({
+    event_source_arn  = string
+    starting_position = string
+    batch_size        = string
+    maximum_batching_window_in_seconds = string
+    starting_position = string
+    starting_position_timestamp = string
   })
   default = null
 }
