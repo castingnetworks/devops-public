@@ -59,8 +59,8 @@ resource "aws_lambda_event_source_mapping" "lambda-event" {
   enabled = true
   event_source_arn = var.lambda_event.event_source_arn
   function_name = aws_lambda_function.lambda.arn
-  batch_size = var.lambda_event.batch_size
-  maximum_batching_window_in_seconds = var.lambda_event.maximum_batching_window_in_seconds
+  batch_size = var.lambda_event.batch_size == null ? null : var.lambda_event.batch_size
+  maximum_batching_window_in_seconds = var.lambda_event.maximum_batching_window_in_seconds == null ? null : var.lambda_event.maximum_batching_window_in_seconds
 }
 
 resource "aws_lambda_event_source_mapping" "lambda_event_dynamo-kinesis" {
