@@ -4,9 +4,8 @@ variable "name" {
 }
 
 variable "tags" {
-  description = "List of map of additional tags"
-  type        = list(string)
-  default     = []
+  type    = map(string)
+  default = null
 }
 
 variable "kinesis_shard_count" {
