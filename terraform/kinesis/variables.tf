@@ -33,7 +33,7 @@ variable "encryption_type" {
   default     = "NONE"
 }
 
-variable "kms_key_id " {
+variable "kms_key_id" {
   description = "The encryption type to use. The only acceptable values are NONE or KMS. The default value is NONE."
   type        = string
   default     = null 
