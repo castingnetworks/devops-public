@@ -20,6 +20,15 @@ resource "aws_security_group_rule" "redis_ingress" {
   security_group_id        = aws_security_group.redis_security_group.id
 }
 
+resource "aws_security_group_rule" "redis_egress" {
+  count                    = length(data.aws_security_groups.redis.ids)
+  type                     = "egress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "-1"
+  security_group_id        = aws_security_group.redis_security_group.id
+}
+
 resource "aws_security_group_rule" "redis_networks_ingress" {
   type              = "ingress"
   from_port         = var.redis_port
