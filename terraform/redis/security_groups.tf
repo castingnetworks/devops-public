@@ -4,7 +4,7 @@ resource "aws_security_group" "redis_security_group" {
   vpc_id      = data.aws_vpc.redis.id
   tags = merge(
     {
-      "Domain" = "tf-${var.name}-sg"
+      "Name" = "tf-${var.name}-sg"
     },
     var.tags,
 }

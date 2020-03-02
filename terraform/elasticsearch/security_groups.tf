@@ -4,7 +4,7 @@ resource "aws_security_group" "es_security_group" {
   vpc_id      = data.aws_vpc.es[0].id
   tags = merge(
     {
-      "Domain" = "tf-${var.domain_name}-sg"
+      "Name" = "tf-${var.domain_name}-sg"
     },
     var.tags,
   )
