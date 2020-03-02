@@ -1,7 +1,5 @@
 /*Add a new set of data.aws_iam_policy_document, aws_elasticsearch_domain, aws_elasticsearch_domain_policy. Because currently terraform/aws_elasticsearch_domain 
 does not handle properly null/empty "vpc_options" */
-
-
 data "aws_vpc" "es" {
   count   = var.vpc_config == null ? 0 : 1
   tags = {
