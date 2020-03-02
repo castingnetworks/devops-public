@@ -1,6 +1,6 @@
 resource "aws_security_group" "es_security_group" {
-  name        = "tf-${var.name}-sg"
-  description = "Terraform-managed ElastiSearch security group for ${var.name}"
+  name        = "tf-${var.domain_name}-sg"
+  description = "Terraform-managed ElastiSearch security group for ${var.domain_name}"
   vpc_id      = data.aws_vpc.es[0].id
   tags        = var.tags
 }
