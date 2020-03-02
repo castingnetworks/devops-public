@@ -2,7 +2,11 @@ resource "aws_security_group" "redis_security_group" {
   name        = "tf-${var.name}-sg"
   description = "Terraform-managed ElastiCache security group for ${var.name}"
   vpc_id      = data.aws_vpc.redis.id
-  tags        = var.tags
+  tags = merge(
+    {
+      "Domain" = "tf-${var.name}-sg"
+    },
+    var.tags,
 }
 
 resource "aws_security_group_rule" "redis_ingress" {
