@@ -32,6 +32,7 @@ resource "aws_security_group_rule" "redis_networks_ingress" {
 }
 
 resource "aws_security_group_rule" "redis_cadditional_cidr_ingress" {
+  count   = var.additional_cidr_ingress == null ? 0 : 1
   type              = "ingress"
   from_port         = var.redis_port
   to_port           = var.redis_port
