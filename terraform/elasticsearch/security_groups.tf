@@ -27,6 +27,7 @@ resource "aws_security_group_rule" "es_networks_ingress" {
 }
 
 resource "aws_security_group_rule" "es_additional_cidr_ingress" {
+  count   = var.additional_cidr_ingress == null ? 0 : 1
   type              = "ingress"
   from_port         = var.es_port
   to_port           = var.es_port

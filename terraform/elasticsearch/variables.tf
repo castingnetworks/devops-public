@@ -14,7 +14,7 @@ variable "es_port" {
 // not set since i was too lazy to find how to not add the value if not set
 variable "additional_cidr_ingress" {
   type    = string
-  default = "127.0.0.1"
+  default = "127.0.0.1/32"
 }
 
 
