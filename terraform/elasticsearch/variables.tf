@@ -4,6 +4,20 @@ variable "create_iam_service_linked_role" {
   default     = false
 }
 
+variable "es_port" {
+  description = "Elastic Search Port"
+  type        = number
+  default     = 443
+}
+
+// So this is where we add corporate network access to redis.  I'm defaulting to 127.0.0.1 if
+// not set since i was too lazy to find how to not add the value if not set
+variable "additional_cidr_ingress" {
+  type    = string
+  default = "127.0.0.1"
+}
+
+
 variable "domain_name" {
   description = "Domain name for Elasticsearch cluster"
   type        = string

@@ -1,6 +1,7 @@
 /*Add a new set of data.aws_iam_policy_document, aws_elasticsearch_domain, aws_elasticsearch_domain_policy. Because currently terraform/aws_elasticsearch_domain 
 does not handle properly null/empty "vpc_options" */
 
+
 data "aws_vpc" "es" {
   count   = var.vpc_config == null ? 0 : 1
   tags = {
@@ -105,7 +106,8 @@ resource "aws_elasticsearch_domain" "es_vpc" {
 
   vpc_options {
     subnet_ids         = slice(tolist(data.aws_subnet_ids.es[0].ids), 0, var.instance_count)
-    security_group_ids = data.aws_security_groups.es[0].ids
+    //security_group_ids = data.aws_security_groups.es[0].ids
+    security_group_ids = aws_security_group.es_security_group.id
   }
 
   ebs_options {
