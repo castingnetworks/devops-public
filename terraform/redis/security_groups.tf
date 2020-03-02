@@ -7,6 +7,7 @@ resource "aws_security_group" "redis_security_group" {
       "Name" = "tf-${var.name}-sg"
     },
     var.tags,
+  )
 }
 
 resource "aws_security_group_rule" "redis_ingress" {
