@@ -143,21 +143,3 @@ variable "vpc_config" {
   })
   default = null
 }
-
-variable "lambda_event" {
- type = object({
-    event_source_arn  = string
-    batch_size        = number
-  })
-  default = null
-}
-
-variable "lambda_event_dynamo-kinesis" {
- type = object({
-    event_source_arn  = string
-    starting_position = string
-    starting_position_timestamp = string
-    
-  })
-  default = null
-}

@@ -52,22 +52,3 @@ data "aws_s3_bucket_object" "lambda_hash" {
   bucket = var.artifact_bucket
   key    = var.artifact_hash_key
 }
-
-# Setup Events if necessary
-resource "aws_lambda_event_source_mapping" "lambda-event" {
-  count   = var.lambda_event == null ? 0 : 1
-  enabled = true
-  event_source_arn = var.lambda_event.event_source_arn
-  function_name = aws_lambda_function.lambda.arn
-  batch_size = var.batch_size 
-}
-
-resource "aws_lambda_event_source_mapping" "lambda_event_dynamo-kinesis" {
-  count   = var.lambda_event_dynamo-kinesis == null ? 0 : 1
-  enabled = true
-  event_source_arn = var.lambda_event_dynamo-kinesis.event_source_arn
-  function_name = aws_lambda_function.lambda.arn
-  starting_position = var.lambda_event_dynamo-kinesis.starting_position
-  starting_position_timestamp = var.lambda_event_dynamo-kinesis.starting_position_timestamp
-  batch_size = var.batch_size 
-}
