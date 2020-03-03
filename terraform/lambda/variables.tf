@@ -103,6 +103,11 @@ variable "timeout" {
   default = 3
 }
 
+variable "batch_size" {
+  type = number
+  default = null
+}
+
 # Optional blocks to pass through to the resource.
 
 variable "dead_letter_config" {
@@ -142,6 +147,7 @@ variable "vpc_config" {
 variable "lambda_event" {
  type = object({
     event_source_arn  = string
+    batch_size        = number
   })
   default = null
 }
@@ -151,6 +157,7 @@ variable "lambda_event_dynamo-kinesis" {
     event_source_arn  = string
     starting_position = string
     starting_position_timestamp = string
+    
   })
   default = null
 }
