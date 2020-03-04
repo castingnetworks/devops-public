@@ -1,6 +1,6 @@
 resource "aws_security_group" "redis_security_group" {
   name        = "tf-${var.name}-sg"
-  description = "Managed by Terraform"
+  description = "Terraform-managed ElastiCache security group for ${var.name}"
   vpc_id      = data.aws_vpc.redis.id
   tags = merge(
     {
