@@ -70,8 +70,6 @@ resource "aws_security_group_rule" "redis_cadditional_cidr_egress" {
   from_port                = 0
   to_port                  = 0
   protocol                 = "-1"
-  cidr_blocks       = [
-    var.additional_cidr_ingress
-  ]
+  cidr_blocks = ["0.0.0.0/0"]
   security_group_id = aws_security_group.redis_security_group.id
 }

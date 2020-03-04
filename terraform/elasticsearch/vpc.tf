@@ -120,7 +120,8 @@ resource "aws_elasticsearch_domain" "es_vpc" {
 
   tags = merge(
     {
-      "Domain" = local.domain_name
+      "Domain" = local.domain_name,
+      "cni/terraform" = "true"
     },
     var.tags,
   )
