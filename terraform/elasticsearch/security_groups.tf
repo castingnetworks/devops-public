@@ -1,6 +1,6 @@
 resource "aws_security_group" "es_security_group" {
   name        = "tf-${var.domain_name}-sg"
-  description = "Terraform-managed ElastiSearch security group for ${var.domain_name}"
+  description = "Managed by Terraform"
   vpc_id      = data.aws_vpc.es[0].id
   tags = merge(
     {
