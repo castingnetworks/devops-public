@@ -253,7 +253,7 @@ data "aws_iam_policy_document" "elb_log_delivery" {
 }
 
 resource "aws_s3_bucket_policy" "this_nodelete" {
-  bucket = aws_s3_bucket.this.id
+  bucket = aws_s3_bucket.this[0].id
 
   policy = <<POLICY
 {
@@ -265,7 +265,7 @@ resource "aws_s3_bucket_policy" "this_nodelete" {
       "Effect": "Deny",
       "Principal": "*",
       "Action": "s3:DeleteBucket",
-      "Resource": "${aws_s3_bucket.this.arn}"
+      "Resource": "${aws_s3_bucket.this[0].arn}"
     }
   ]
 }
