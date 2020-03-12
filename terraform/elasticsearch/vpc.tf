@@ -23,27 +23,27 @@ data "aws_security_groups" "es" {
   }
 }
 
-#data "aws_iam_policy_document" "es_vpc_management_access" {
- # count = local.inside_vpc ? 1 : 0
+data "aws_iam_policy_document" "es_vpc_management_access" {
+  count = local.inside_vpc ? 1 : 0
 
-#  statement {
-#    actions = [
-#      "es:*",
-#    ]
+  statement {
+    actions = [
+      "es:*",
+    ]
 
 
-#    resources = [
- #     aws_elasticsearch_domain.es_vpc[0].arn,
-#      "${aws_elasticsearch_domain.es_vpc[0].arn}/*",
- #   ]
+    resources = [
+      aws_elasticsearch_domain.es_vpc[0].arn,
+      "${aws_elasticsearch_domain.es_vpc[0].arn}/*",
+    ]
 
- #   principals {
- #     type = "AWS"
+    principals {
+      type = "AWS"
 
- #     identifiers = distinct(compact(var.management_iam_roles))
-  #  }
-  #}
-#}
+      identifiers = distinct(compact(var.management_iam_roles))
+    }
+  }
+}
 
 resource "aws_iam_service_linked_role" "es" {
   count            = var.create_iam_service_linked_role ? 1 : 0
@@ -127,9 +127,9 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   )
 }
 
-#resource "aws_elasticsearch_domain_policy" "es_vpc_management_access" {
-#  count = local.inside_vpc ? 1 : 0#
-#
-#  domain_name     = local.domain_name
-#  access_policies = data.aws_iam_policy_document.es_vpc_management_access[0].json
-#}
+resource "aws_elasticsearch_domain_policy" "es_vpc_management_access" {
+  count = local.inside_vpc ? 1 : 0#
+
+  domain_name     = local.domain_name
+  access_policies = data.aws_iam_policy_document.es_vpc_management_access[0].json
+}
