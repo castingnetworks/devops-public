@@ -79,6 +79,12 @@ variable "kms_key_arn" {
   default = null
 }
 
+variable "provider_override" {
+  type    = string
+  default = null
+}
+
+
 variable "memory_size" {
   type    = number
   default = null
