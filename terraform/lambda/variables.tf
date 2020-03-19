@@ -79,6 +79,12 @@ variable "kms_key_arn" {
   default = null
 }
 
+variable "provider_alias" {
+  type  = string
+  default = "aws"
+}
+
+
 variable "memory_size" {
   type    = number
   default = null
@@ -130,7 +136,6 @@ variable "tracing_config" {
   })
   default = null
 }
-
 
 variable "vpc_config" {
   type = object({
