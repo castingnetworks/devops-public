@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "lambda" {
-
+  provider                       = var.provider_override
   function_name                  = var.function_name
   description                    = var.description
   role                           = aws_iam_role.lambda.arn
