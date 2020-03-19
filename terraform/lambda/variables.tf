@@ -79,12 +79,6 @@ variable "kms_key_arn" {
   default = null
 }
 
-variable "provider_alias" {
-  type  = string
-  default = "aws"
-}
-
-
 variable "memory_size" {
   type    = number
   default = null
