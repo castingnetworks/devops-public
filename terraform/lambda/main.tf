@@ -13,8 +13,6 @@ resource "aws_lambda_function" "lambda" {
   source_code_hash               = data.aws_s3_bucket_object.lambda_hash.body
   s3_bucket                      = var.artifact_bucket
   s3_key                         = var.artifact_zip_key
-  provider                       = var.provider_override
-
   
   # Add dynamic blocks based on variables.
 
