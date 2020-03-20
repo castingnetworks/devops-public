@@ -1,4 +1,5 @@
 resource "aws_lambda_function" "lambda" {
+
   function_name                  = var.function_name
   description                    = var.description
   role                           = aws_iam_role.lambda.arn
@@ -11,9 +12,10 @@ resource "aws_lambda_function" "lambda" {
   tags                           = var.tags
   source_code_hash               = data.aws_s3_bucket_object.lambda_hash.body
   s3_bucket                      = var.artifact_bucket
-  s3_key                         = null
+  s3_key                         = var.artifact_zip_key
+  provider                       = null
 
-
+  
   # Add dynamic blocks based on variables.
 
   dynamic "dead_letter_config" {
