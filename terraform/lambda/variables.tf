@@ -81,7 +81,7 @@ variable "kms_key_arn" {
 
 variable "provider_override" {
   type    = string
-  default = aws
+  default = "aws"
 }
 
 
