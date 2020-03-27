@@ -46,13 +46,6 @@ variable "receive_wait_time_seconds" {
   default     = 0
 }
 
-
-variable "redrive_policy" {
-  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
-  type        = string
-  default     = ""
-}
-
 variable "fifo_queue" {
   description = "Boolean designating a FIFO queue"
   type        = bool
@@ -81,4 +74,10 @@ variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)
   default     = {}
+}
+
+variable "message_max_receive" {
+  description = "Max number of times a message can be read before being sent to dead letter queue"
+  type        = number
+  default     = 5
 }
