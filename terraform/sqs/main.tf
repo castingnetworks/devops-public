@@ -26,7 +26,7 @@ resource "aws_sqs_queue" "this" {
          ]
       },
       "Action": "SQS:*",
-      "Resource": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.name}"
+      "Resource": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.name}*"
     }
   ]
 }
@@ -68,7 +68,7 @@ resource "aws_sqs_queue" "deadletter_queue" {
          ]
       },
       "Action": "SQS:*",
-      "Resource": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.name}"
+      "Resource": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.name}*"
     }
   ]
 }
