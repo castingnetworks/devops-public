@@ -254,7 +254,8 @@ data "aws_iam_policy_document" "elb_log_delivery" {
     sid = ""
 
     principals {
-      identifiers = "*"
+      type        = "AWS"
+      identifiers = ["*"]
     }
 
     effect = "Deny"
