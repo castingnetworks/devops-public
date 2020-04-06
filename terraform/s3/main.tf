@@ -233,7 +233,7 @@ data "aws_iam_policy_document" "elb_log_delivery" {
   count = var.create_bucket && var.attach_elb_log_delivery_policy ? 1 : 0
 
   statement {
-    sid = ""
+    sid = "1"
 
     principals {
       type        = "AWS"
@@ -251,7 +251,7 @@ data "aws_iam_policy_document" "elb_log_delivery" {
     ]
   }
  statement {
-    sid = ""
+    sid = "2"
 
     principals {
       type        = "AWS"
