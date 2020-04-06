@@ -20,6 +20,9 @@ resource "aws_elasticache_replication_group" "redis" {
   tags                          = var.tags
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   transit_encryption_enabled    = var.transit_encryption_enabled
+  lifecycle {
+    ignore_changes = ["number_cache_clusters"]
+  }
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
