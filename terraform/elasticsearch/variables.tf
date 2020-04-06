@@ -81,7 +81,7 @@ variable "kms_key_id" {
 variable "snapshot_start_hour" {
   description = "Hour at which automated snapshots are taken, in UTC (default 0)"
   type        = number
-  default     = 12
+  default     = 7
 }
 
 variable "vpc_config" {
