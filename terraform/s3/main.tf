@@ -253,7 +253,9 @@ data "aws_iam_policy_document" "elb_log_delivery" {
  statement {
     sid = ""
 
-    principal = "*"
+    principals {
+      identifiers = "*"
+    }
 
     effect = "Deny"
 
