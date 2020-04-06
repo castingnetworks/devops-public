@@ -249,6 +249,23 @@ data "aws_iam_policy_document" "elb_log_delivery" {
     resources = [
       "arn:aws:s3:::${aws_s3_bucket.this[0].id}/*",
     ]
+  }, 
+ statement {
+    sid = ""
+
+    principals {
+      type        = "*"
+    }
+
+    effect = "Deny"
+
+    actions = [
+      "s3:DeleteBucket",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${aws_s3_bucket.this[0].id}",
+    ]
   }
 }
 
