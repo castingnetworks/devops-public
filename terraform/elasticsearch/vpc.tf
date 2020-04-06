@@ -127,9 +127,9 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   )
 }
 
-resource "aws_elasticsearch_domain_policy" "es_vpc_management_access" {
-  count = local.inside_vpc ? 1 : 0#
+#resource "aws_elasticsearch_domain_policy" "es_vpc_management_access" {
+#  count = local.inside_vpc ? 1 : 0#
 
-  domain_name     = local.domain_name
-  access_policies = data.aws_iam_policy_document.es_vpc_management_access[0].json
-}
+#  domain_name     = local.domain_name
+#  access_policies = data.aws_iam_policy_document.es_vpc_management_access[0].json
+#}
