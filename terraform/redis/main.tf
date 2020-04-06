@@ -21,7 +21,7 @@ resource "aws_elasticache_replication_group" "redis" {
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   transit_encryption_enabled    = var.transit_encryption_enabled
   lifecycle {
-    ignore_changes = ["number_cache_clusters"]
+    ignore_changes = [number_cache_clusters]
   }
 }
 
