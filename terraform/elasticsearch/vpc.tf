@@ -62,6 +62,10 @@ resource "aws_elasticsearch_domain" "es_vpc" {
     enabled    = var.at_rest_encryption_enabled && (substr(var.instance_type, 1, 1) != "2" && substr(var.instance_type, 1, 1) != "3") ? true : false 
     kms_key_id = var.kms_key_id
   }
+  
+  domain_endpoint_options {
+    enforce_https = true  
+  }
 
   cluster_config {
     instance_type            = var.instance_type
