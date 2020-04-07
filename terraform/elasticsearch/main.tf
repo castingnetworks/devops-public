@@ -65,7 +65,7 @@ resource "aws_elasticsearch_domain" "es" {
   
    log_publishing_options {
     cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_error.arn}"
-    log_type                 = "ERROR_LOGS"
+    log_type                 = "ES_APPLICATION_LOGS"
   }
 
   node_to_node_encryption {
