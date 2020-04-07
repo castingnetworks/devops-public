@@ -1,5 +1,13 @@
-resource "aws_cloudwatch_log_group" "es_vpc" {
-  name = "/aws/aes/domains/${aws_elasticsearch_domain.es_vpc.domain_name}/search-logs"
+resource "aws_cloudwatch_log_group" "es_vpc-search" {
+  name = "/aws/aes/domains/${aws_elasticsearch_domain.es_vpc.domain_name}/slow-search-logs"
+}
+
+resource "aws_cloudwatch_log_group" "es_vpc-index" {
+  name = "/aws/aes/domains/${aws_elasticsearch_domain.es_vpc.domain_name}/index-logs"
+}
+
+resource "aws_cloudwatch_log_group" "es_vpc-error" {
+  name = "/aws/aes/domains/${aws_elasticsearch_domain.es_vpc.domain_name}/error-logs"
 }
 
 resource "aws_cloudwatch_log_resource_policy" "example" {
