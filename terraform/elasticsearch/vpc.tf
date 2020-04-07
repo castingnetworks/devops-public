@@ -89,17 +89,17 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   advanced_options = var.advanced_options
 
  log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_index.arn}"
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.es_vpc_index.arn
     log_type                 = "INDEX_SLOW_LOGS"
   }
   
   log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_search.arn}"
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.es_vpc_search.arn
     log_type                 = "SEARCH_SLOW_LOGS"
   }
   
    log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_error.arn}"
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.es_vpc_error.arn
     log_type                 = "ES_APPLICATION_LOGS"
   }
 
