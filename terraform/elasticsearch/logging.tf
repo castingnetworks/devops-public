@@ -1,9 +1,9 @@
-resource "aws_cloudwatch_log_group" "example" {
-  name = "example"
+resource "aws_cloudwatch_log_group" "es_vpc" {
+  name = "/aws/aes/domains/${aws_elasticsearch_domain.es_vpc.domain_name}/search-logs"
 }
 
 resource "aws_cloudwatch_log_resource_policy" "example" {
-  policy_name = "example"
+  policy_name = "tf-${aws_elasticsearch_domain.es_vpc.domain_name}-policy"
 
   policy_document = <<CONFIG
 {
@@ -26,11 +26,3 @@ resource "aws_cloudwatch_log_resource_policy" "example" {
 CONFIG
 }
 
-resource "aws_elasticsearch_domain" "example" {
-  # .. other configuration ...
-
-  log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.example.arn}"
-    log_type                 = "INDEX_SLOW_LOGS"
-  }
-}
