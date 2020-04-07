@@ -53,18 +53,19 @@ resource "aws_elasticsearch_domain" "es" {
 
   advanced_options = var.advanced_options
 
-  dynamic "log_publishing_options" {
-    for_each = var.log_publishing_options
-    content {
-      # TF-UPGRADE-TODO: The automatic upgrade tool can't predict
-      # which keys might be set in maps assigned here, so it has
-      # produced a comprehensive set here. Consider simplifying
-      # this after confirming which keys can be set in practice.
-
-      cloudwatch_log_group_arn = log_publishing_options.value.cloudwatch_log_group_arn
-      enabled                  = lookup(log_publishing_options.value, "enabled", null)
-      log_type                 = log_publishing_options.value.log_type
-    }
+  log_publishing_options {
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_index.arn}"
+    log_type                 = "INDEX_SLOW_LOGS"
+  }
+  
+  log_publishing_options {
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_search.arn}"
+    log_type                 = "SEARCH_SLOW_LOGS"
+  }
+  
+   log_publishing_options {
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.es_vpc_error.arn}"
+    log_type                 = "ERROR_LOGS"
   }
 
   node_to_node_encryption {
