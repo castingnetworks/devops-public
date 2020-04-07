@@ -117,7 +117,7 @@ variable "domain_prefix" {
 variable "dedicated_master_threshold" {
   description = "The number of instances above which dedicated master nodes will be used. Default: 10"
   type        = number
-  default     = 10
+  default     = 1
 }
 
 variable "advanced_options" {
