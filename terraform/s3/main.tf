@@ -272,8 +272,6 @@ data "aws_iam_policy_document" "elb_log_delivery" {
 
 resource "aws_s3_bucket_policy" "this_nodelete" {	
   bucket = aws_s3_bucket.this[0].id	
-
-
   policy = <<POLICY	
 {	
   "Version": "2012-10-17",	
