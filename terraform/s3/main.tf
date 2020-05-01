@@ -270,23 +270,22 @@ data "aws_iam_policy_document" "elb_log_delivery" {
   }
 }
 
-resource "aws_s3_bucket_policy" "this_nodelete" {	
-  bucket = aws_s3_bucket.this[0].id	
-  policy = <<POLICY	
-{	
-  "Version": "2012-10-17",	
-  "Id": "BUCKETPOLICY",	
-  "Statement": [	
-    {	
-      "Sid": "1",	
-      "Effect": "Deny",	
-      "Principal": "*",	
-      "Action": "s3:DeleteBucket",	
-      "Resource": "${aws_s3_bucket.this[0].arn}"	
-    }	
-  ]	
-}	
-POLICY	
+resource "aws_s3_bucket_policy" "this_nodelete" {
+  bucket = aws_s3_bucket.this[0].id
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "BUCKETPOLICY",
+  "Statement": [
+    {
+      "Sid": "1",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:DeleteBucket",
+      "Resource": "${aws_s3_bucket.this[0].arn}"
+    }
+  ]
 }
-
-
+POLICY
+}
