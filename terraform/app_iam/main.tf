@@ -16,7 +16,7 @@ resource "aws_iam_policy" "app-policy" {
 
 resource "aws_iam_policy_attachment" "app-policy-attachment" {
   name       = "tf-${var.name_prefix}-${var.app_name}-policy-attach"
-  role       = aws_iam_role.app-role.name
+  roles       = [aws_iam_role.app-role.name]
   policy_arn = aws_iam_policy.app-policy.arn
 }
 
