@@ -3,8 +3,8 @@ variable "eks_cluster_name" {
   type        = string
 }
 
-variable "env" {
-  description = "Environment Name"
+variable "name_prefix" {
+  description = "Prefix for role name"
   type        = string
 }
 
