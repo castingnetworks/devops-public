@@ -20,7 +20,7 @@ variable "apply_immediately" {
   default     = false
 }
 
-variable "vpc_env" {
+variable "subnet_group_override" {
   type = string
   default = null
 }

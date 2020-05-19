@@ -11,7 +11,7 @@ resource "aws_elasticache_replication_group" "redis" {
   engine_version                = var.redis_version
   port                          = var.redis_port
   parameter_group_name          = aws_elasticache_parameter_group.redis_parameter_group.id
-  subnet_group_name             = var.vpc_env == null ? aws_elasticache_subnet_group.redis_subnet_group[0].name : var.name_prefix
+  subnet_group_name             = var.subnet_group_override == null ? aws_elasticache_subnet_group.redis_subnet_group[0].name : var.subnet_group_override
   security_group_ids            = [aws_security_group.redis_security_group.id]
   apply_immediately             = var.apply_immediately
   maintenance_window            = var.redis_maintenance_window
@@ -46,7 +46,7 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  count   = var.vpc_env == null ? 1 : 0
+  count   = var.subnet_group_override == null ? 1 : 0
   name       = var.name_prefix
   description = "Managed by Terraform"
   subnet_ids = data.aws_subnet_ids.redis.ids
