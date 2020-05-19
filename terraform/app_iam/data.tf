@@ -2,11 +2,7 @@ data "aws_eks_cluster" "eks" {
   name = var.eks_cluster_name
 }
 
-data "aws_iam_openid_connect_provider" "eks" {
-  url = data.aws_eks_cluster.eks.identity.0.oidc.0.issuer
-  thumbprint_list = []
-  client_id_list  = ["sts.amazonaws.com"]
-}
+
 
 data "aws_iam_policy_document" "app-assume-role-policy" {
   statement {
@@ -14,7 +10,7 @@ data "aws_iam_policy_document" "app-assume-role-policy" {
     effect  = "Allow"
 
     principals {
-      identifiers = ["${data.aws_iam_openid_connect_provider.eks.arn}"]
+      identifiers = ["${data.aws_eks_cluster.eks.oidc_provider_arn}"]
       type        = "Federated"
     }
   }
