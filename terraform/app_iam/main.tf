@@ -2,7 +2,7 @@
 resource "aws_iam_role" "app-role" {
   name               = "tf-${var.name_prefix}-${var.app_name}-role"
   assume_role_policy = data.aws_iam_policy_document.app-assume-role-policy.json
-  tags = local.tags
+  tags = var.tags
 }
 
 
