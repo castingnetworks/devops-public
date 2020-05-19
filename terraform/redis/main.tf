@@ -46,7 +46,8 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  count   = var.vpc_env == null ? 0 : 1
-  name       = "${var.name}-subnets"
+  count   = var.vpc_env == null ? 1 : 0
+  name       = var.name_prefix
+  description "Managed by Terraform"
   subnet_ids = data.aws_subnet_ids.redis.ids
 }
