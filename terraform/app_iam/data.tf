@@ -1,5 +1,5 @@
 data "aws_eks_cluster" "eks" {
-  name = "ci-eks"
+  name = var.eks_cluster_name
 }
 
 data "aws_iam_policy_document" "app-assume-role-policy" {
