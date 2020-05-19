@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "app-assume-role-policy" {
     effect  = "Allow"
 
     principals {
-      identifiers = ["${data.aws_eks_cluster.eks.identity.0.oidc.0.issuer}"]
+      identifiers = ["${data.aws_eks_cluster.eks.identity.0.oidc.0.arn}"]
       type        = "Federated"
     }
   }
