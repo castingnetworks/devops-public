@@ -20,6 +20,11 @@ variable "apply_immediately" {
   default     = false
 }
 
+variable "vpc_env" {
+  type = string
+  default = null
+}
+
 
 variable "name" {
   description = "Name for the Redis replication group i.e. UserObject"
