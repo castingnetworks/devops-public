@@ -26,6 +26,10 @@ variable "name" {
   type        = string
 }
 
+variable "name_prefix" {
+  type        = string
+}
+
 variable "description" {
   description = "Description of redis cluster"
   type        = string
