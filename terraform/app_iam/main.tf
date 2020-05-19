@@ -10,7 +10,7 @@ resource "aws_iam_role" "app-role" {
 resource "aws_iam_policy" "app-policy" {
   name   = "tf-${var.env}-${var.app_name}-policy"
   path   = "/"
-  policy = var.policy.json
+  policy = var.policy
 }
 
 
