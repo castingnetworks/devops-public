@@ -20,9 +20,18 @@ variable "apply_immediately" {
   default     = false
 }
 
+variable "subnet_group_override" {
+  type = string
+  default = null
+}
+
 
 variable "name" {
   description = "Name for the Redis replication group i.e. UserObject"
+  type        = string
+}
+
+variable "name_prefix" {
   type        = string
 }
 
@@ -97,11 +106,6 @@ variable "tags" {
   description = "Tags for redis nodes"
   type        = map(string)
   default     = {}
-}
-
-variable "subnet_group_name" {
-  description = "Subnet Group Name"
-  type        = string
 }
 
 variable "at_rest_encryption_enabled" {

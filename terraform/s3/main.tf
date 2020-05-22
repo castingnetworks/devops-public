@@ -231,27 +231,9 @@ data "aws_elb_service_account" "this" {
 
 data "aws_iam_policy_document" "elb_log_delivery" {
   count = var.create_bucket && var.attach_elb_log_delivery_policy ? 1 : 0
-
+  policy_id = "BUCKETPOLICY"
   statement {
     sid = "1"
-
-    principals {
-      type        = "AWS"
-      identifiers = data.aws_elb_service_account.this.*.arn
-    }
-
-    effect = "Allow"
-
-    actions = [
-      "s3:PutObject",
-    ]
-
-    resources = [
-      "arn:aws:s3:::${aws_s3_bucket.this[0].id}/*",
-    ]
-  }
- statement {
-    sid = "2"
 
     principals {
       type        = "AWS"
@@ -266,6 +248,24 @@ data "aws_iam_policy_document" "elb_log_delivery" {
 
     resources = [
       "arn:aws:s3:::${aws_s3_bucket.this[0].id}",
+    ]
+  }
+  statement {
+    sid = "2"
+
+    principals {
+      type        = "AWS"
+      identifiers = data.aws_elb_service_account.this.*.arn
+    }
+
+    effect = "Allow"
+
+    actions = [
+      "s3:PutObject",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${aws_s3_bucket.this[0].id}/*",
     ]
   }
 }
