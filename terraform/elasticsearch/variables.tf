@@ -1,9 +1,3 @@
-variable "create" {
-  description = "whether or not to create ES"
-  type        = bool
-  default     = true
-}
-
 variable "create_iam_service_linked_role" {
   description = "Whether to create IAM service linked role for AWS ElasticSearch service. Can be only one per AWS account."
   type        = bool
