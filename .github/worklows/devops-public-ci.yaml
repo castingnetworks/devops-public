@@ -1,0 +1,16 @@
+name: 'Devops Public GitHub Actions'
+on:
+  - push
+jobs:
+  terraform:
+    name: 'Terraform Validation'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: Lint Code Base
+        uses: docker://github/super-linter:v3
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+    
