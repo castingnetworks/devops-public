@@ -7,12 +7,12 @@ data:
     - "groups":
       - "system:nodes"
       - "system:bootstrappers"
-      "rolearn": "arn:aws:iam::668562138162:role/prd-eks-workers-role"
+      "rolearn": "arn:aws:iam::668562138162:role/stg-eks-workers-role"
       "username": "system:node:{{EC2PrivateDNSName}}"
     - "groups":
       - "system:masters"
       - "system:bootstrappers"
-      "rolearn": "arn:aws:iam::668562138162:role/tf-prd-harness-role"
+      "rolearn": "arn:aws:iam::668562138162:role/tf-stg-harness-role"
       "username": "harness"
 
   mapUsers: |
