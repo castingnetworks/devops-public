@@ -1,3 +1,5 @@
+// https://github.com/terraform-aws-modules/terraform-aws-s3-bucket
+
 resource "aws_s3_bucket" "this" {
   count = var.create_bucket ? 1 : 0
 
