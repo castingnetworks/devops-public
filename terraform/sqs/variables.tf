@@ -28,6 +28,12 @@ variable "message_retention_seconds" {
   default     = 345600
 }
 
+variable "deadletter_message_retention_seconds" {
+  description = "The number of seconds Amazon deadletter SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  type        = number
+  default     = 864000
+}
+
 variable "max_message_size" {
   description = "The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB)"
   type        = number
