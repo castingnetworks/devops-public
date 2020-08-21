@@ -37,8 +37,15 @@ variable "max_message_size" {
 variable "delay_seconds" {
   description = "The time in seconds that the delivery of all messages in the queue will be delayed. An integer from 0 to 900 (15 minutes)"
   type        = number
+  default     = 0
+}
+
+variable "deadletter_delay_seconds" {
+  description = "The time in seconds that the delivery of all messages in the deadletter queue will be delayed. An integer from 0 to 900 (15 minutes)"
+  type        = number
   default     = 60
 }
+
 
 variable "receive_wait_time_seconds" {
   description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
