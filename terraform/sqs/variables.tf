@@ -22,6 +22,12 @@ variable "visibility_timeout_seconds" {
   default     = 30
 }
 
+variable "deadletter_visibility_timeout_seconds" {
+  description = "The visibility timeout for the deadletter queue. An integer from 0 to 43200 (12 hours)"
+  type        = number
+  default     = 180
+}
+
 variable "message_retention_seconds" {
   description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
   type        = number
