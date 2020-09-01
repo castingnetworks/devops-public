@@ -26,4 +26,8 @@ data:
       - "system:masters"
       "userarn": "arn:aws:iam::541517706354:user/jeremy.malara@castingnetworks.com"
       "username": "jeremy_malara"
+    - "groups":
+      - "cfi:developers"
+      "userarn": "arn:aws:iam::541517706354:user/matt@castingfrontier.com"
+      "username": "matt"
 kind: ConfigMap
