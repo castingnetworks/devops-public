@@ -5,16 +5,16 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-  - "groups":
-    - "system:nodes"
-    - "system:bootstrappers"
-    "rolearn": "arn:aws:iam::541517706354:role/cfi-ci-eks-workers-role"
-    "username": "system:node:{{EC2PrivateDNSName}}"
-  - "groups":
-    - "system:masters"
-    - "system:bootstrappers"
-    "rolearn": "arn:aws:iam::541517706354:role/tf-ci-harness-role"
-     "username": "harness"
+    - "groups":
+      - "system:nodes"
+      - "system:bootstrappers"
+      "rolearn": "arn:aws:iam::541517706354:role/cfi-ci-eks-workers-role"
+      "username": "system:node:{{EC2PrivateDNSName}}"
+    - "groups":
+      - "system:masters"
+      - "system:bootstrappers"
+      "rolearn": "arn:aws:iam::541517706354:role/tf-ci-harness-role"
+      "username": "harness"
 
   mapUsers: |
   - "groups":
