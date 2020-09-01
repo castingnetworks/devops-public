@@ -4,9 +4,7 @@ metadata:
   name: aws-auth
   namespace: kube-system
 data:
-  mapAccounts: |
-    []
-  mapRoles: |2+
+  mapRoles: |
   - "groups":
     - "system:nodes"
     - "system:bootstrappers"
