@@ -15,7 +15,6 @@ data:
       - "system:bootstrappers"
       "rolearn": "arn:aws:iam::541517706354:role/tf-ci-harness-role"
       "username": "harness"
-
   mapUsers: |
     - "groups":
       - "system:masters"
