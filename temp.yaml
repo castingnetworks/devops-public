@@ -4,7 +4,10 @@ metadata:
   name: aws-auth
   namespace: kube-system
 data:
-  mapRoles: |
+  mapAccounts: |
+    []
+  mapRoles: |2+
+  
     - "groups":
       - "system:nodes"
       - "system:bootstrappers"
@@ -17,7 +20,6 @@ data:
       "username": "harness"
 
   mapUsers: |
-
     - "groups":
       - "system:masters"
       "userarn": "arn:aws:iam::541517706354:user/jeremy.malara@castingnetworks.com"
