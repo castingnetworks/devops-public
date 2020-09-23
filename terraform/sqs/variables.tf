@@ -4,6 +4,12 @@ variable "create" {
   default     = true
 }
 
+variable "policy" {
+  description = "The JSON policy for the SQS queue"
+  type        = string
+  default     = ""
+}
+
 variable "name" {
   description = "This is the human-readable name of the queue. If omitted, Terraform will assign a random name."
   type        = string
