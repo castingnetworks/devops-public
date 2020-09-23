@@ -14,7 +14,6 @@ resource "aws_sqs_queue" "this" {
     maxReceiveCount     = var.message_max_receive
   })
   
-    viewer_request_js = var.cf_auth == true ? "lambda-cf-fe-viewer-request-auth/cf-fe-viewer-request.js" : "lambda-cf-fe-viewer-request/cf-fe-viewer-request.js"
 
   policy = var.policy_override != "" ? var.policy_override : <<POLICY
 {
