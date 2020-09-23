@@ -4,7 +4,7 @@ variable "create" {
   default     = true
 }
 
-variable "policy" {
+variable "policy_override" {
   description = "The JSON policy for the SQS queue"
   type        = string
   default     = ""
