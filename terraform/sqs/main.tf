@@ -13,7 +13,10 @@ resource "aws_sqs_queue" "this" {
     deadLetterTargetArn = aws_sqs_queue.deadletter_queue[0].arn
     maxReceiveCount     = var.message_max_receive
   })
-  policy = <<POLICY
+  
+    viewer_request_js = var.cf_auth == true ? "lambda-cf-fe-viewer-request-auth/cf-fe-viewer-request.js" : "lambda-cf-fe-viewer-request/cf-fe-viewer-request.js"
+
+  policy = var.policy_override != "" ? var.policy_override : <<POLICY
 {
   "Version": "2012-10-17",
   "Statement": [
