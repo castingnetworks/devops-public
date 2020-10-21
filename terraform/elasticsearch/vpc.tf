@@ -109,7 +109,7 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   }
 
   vpc_options {
-    subnet_ids         = slice(tolist(data.aws_subnet_ids.es[0].ids), 0)
+    subnet_ids         = data.aws_subnet_ids.es[0].ids)
     //security_group_ids = data.aws_security_groups.es[0].ids
     security_group_ids = [aws_security_group.es_security_group.id]
   }
