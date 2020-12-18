@@ -8,6 +8,9 @@ resource "aws_security_group" "es_security_group" {
     },
     var.tags,
   )
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_security_group_rule" "es_ingress" {
