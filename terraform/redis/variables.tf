@@ -4,6 +4,11 @@ variable "alarm_cpu_threshold" {
   default = "75"
 }
 
+variable "redis_parameter_group" {
+  default = null
+  type = string
+  }
+  
 variable "alarm_memory_threshold" {
   # 10MB
   default = "10000000"
