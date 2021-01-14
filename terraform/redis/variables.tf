@@ -4,10 +4,7 @@ variable "alarm_cpu_threshold" {
   default = "75"
 }
 
-variable "redis_parameter_group" {
-  default = null
-  type = string
-  }
+
   
 variable "alarm_memory_threshold" {
   # 10MB
@@ -18,6 +15,11 @@ variable "alarm_actions" {
   type = "list"
 }
 */
+  
+variable "redis_parameter_group" {
+  default = null
+  type = string
+  }
 
 variable "apply_immediately" {
   description = "Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false."
