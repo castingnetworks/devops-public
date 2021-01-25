@@ -7,7 +7,7 @@ output "this_redis_parameter_group" {
 }
 
 output "this_redis_subnet_group_name" {
-  value = aws_elasticache_subnet_group.redis_subnet_group.name[0]
+  value = aws_elasticache_subnet_group.redis_subnet_group[0].name
 }
 
 output "this_redis_id" {
