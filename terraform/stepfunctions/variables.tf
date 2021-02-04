@@ -9,9 +9,10 @@ variable "tags" {
 }
 
 variable "definition" {
-    type  = string
+  type = string
 }
 
-variable "name" {
-    type  = string
+variable "policy_json" {
+  type    = string
+  default = null
 }
