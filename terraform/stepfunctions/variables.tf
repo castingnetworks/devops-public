@@ -1,5 +1,5 @@
 variable "name" {
-  description = "Name of the stream"
+  description = "Name of the state machine"
   type        = string
 }
 

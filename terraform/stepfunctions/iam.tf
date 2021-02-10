@@ -1,3 +1,5 @@
+// Setup Role
+
 resource "aws_iam_role" "iam_for_sfn" {
   name = "tf-${var.name}-role"
 
@@ -5,6 +7,7 @@ resource "aws_iam_role" "iam_for_sfn" {
 }
 
 // Assume role policy document
+
 data "aws_iam_policy_document" "sfn_assume_role_policy_document" {
 
   statement {
@@ -21,18 +24,21 @@ data "aws_iam_policy_document" "sfn_assume_role_policy_document" {
   }
 }
 
-resource "aws_iam_policy_attachment" "sfn" {
-  roles      = [aws_iam_role.iam_for_sfn.name]
-  policy_arn = aws_iam_policy.sfn.arn
-}
+// Create Policy
 
 resource "aws_iam_policy" "sfn" {
   name   = "tf-${var.name}-policy"
   policy = data.aws_iam_policy_document.sfn_policy_document.json
 }
 
-data "aws_iam_policy_document" "sfn_policy_document" {
+// Attach Policy
 
+resource "aws_iam_role_policy_attachment" "state_policy_attach" {
+  role       = aws_iam_role.iam_for_sfn.name
+  policy_arn = aws_iam_policy.sfn.arn
+}
+
+data "aws_iam_policy_document" "sfn_policy_document" {
   source_json = var.policy_json
 
   statement {
