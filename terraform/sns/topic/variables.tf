@@ -5,7 +5,7 @@ variable "name" {
 
 variable "policy" {
   type        = string
-  default     = null,
+  default     = null
   description = "The fully-formed AWS policy as JSON"
 }
 
