@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "app-assume-role-policy" {
     effect  = "Allow"
 
     principals {
-      identifiers = ["${data.aws_eks_cluster.eks.oidc_provider_arn}"]
+      identifiers = [data.aws_eks_cluster.eks.oidc_provider_arn]
       type        = "Federated"
     }
   }
