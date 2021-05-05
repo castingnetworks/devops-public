@@ -47,7 +47,7 @@ resource "aws_elasticsearch_domain" "es" {
     dedicated_master_type    = var.instance_count >= var.dedicated_master_threshold ? var.dedicated_master_type != "false" ? var.dedicated_master_type : var.instance_type : ""
     zone_awareness_enabled   = var.instance_count > 1 ? true : false
     zone_awareness_config {
-      availability_zone_count = var.instance_count > 1 ? var.instance_count : 3
+      availability_zone_count = var.instance_count > 1 ? 3 : 3
     }
   }
 
