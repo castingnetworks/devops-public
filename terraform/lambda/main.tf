@@ -28,9 +28,9 @@ resource "aws_lambda_function" "lambda" {
 
   dynamic "environment" {
     for_each = var.environment == null ? [] : [var.environment]
-    content {
+    merge(var.dynatrace_config,content {
       variables = environment.value.variables
-    }
+    })
   }
 
   dynamic "tracing_config" {
