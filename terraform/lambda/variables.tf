@@ -8,6 +8,10 @@ variable "lambda_layers" {
   default = ["arn:aws:lambda:us-west-2:725887861453:layer:Dynatrace_OneAgent_1_215_1_20210326-040705_nodejs:1"]
 }
 
+variable "dynatrace_config" {
+  type = map
+}
+
 variable "handler" {
   type = string
 }
