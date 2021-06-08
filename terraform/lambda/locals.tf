@@ -1,8 +1,8 @@
 locals {
  
- dynamic environment_variables = {
+  environment_variables = {
    for_each = var.environment == null ? [] : [var.environment]
-     content {
+     content = {
        variables = environment.value.variables
      }
    }
