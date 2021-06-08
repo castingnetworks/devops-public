@@ -5,7 +5,7 @@ variable "function_name" {
 
 variable "dynatrace_enabled" {
   type = bool
-  default = true
+  default = false
 }
 
 variable "lambda_layers" {
