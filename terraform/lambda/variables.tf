@@ -3,6 +3,11 @@ variable "function_name" {
   type = string
 }
 
+variable "dynatrace_enabled" {
+  type = bool
+  default = true
+}
+
 variable "lambda_layers" {
   type = list(string)
   default = []
