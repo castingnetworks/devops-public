@@ -26,16 +26,13 @@ resource "aws_lambda_function" "lambda" {
     }
   }
   
-  dynamic "environment" {
-    variables =  local.environment_variables      
-  }
 
-  #dynamic "environment" {
-  #  for_each = var.environment == null ? [] : [var.environment]
-  #  merge(var.dynatrace_config,content {
-  #    variables = environment.value.variables
-   # })
-  #}
+  dynamic "environment" {
+    for_each = var.environment == null ? [] : [var.environment]
+    content {
+      variables = environment.value.variables
+    }
+  }
 
   dynamic "tracing_config" {
     for_each = var.tracing_config == null ? [] : [var.tracing_config]
