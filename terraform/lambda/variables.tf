@@ -3,11 +3,6 @@ variable "function_name" {
   type = string
 }
 
-variable "lambda_layers" {
-  type = list
-  default = ["arn:aws:lambda:us-west-2:725887861453:layer:Dynatrace_OneAgent_1_215_1_20210326-040705_nodejs:1"]
-}
-
 variable "handler" {
   type = string
 }
