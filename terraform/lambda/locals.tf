@@ -1,9 +1,9 @@
 locals {
  
   environment_variables = {
-   for_each = var.environment == null ? [] : [var.environment]
+   for_each = var.environment.variables == null ? [] : [var.environment.variables]
      content = {
-       variables = environment.variables.value.variables
+       variables = environment.value.variables
      }
  }
 }
