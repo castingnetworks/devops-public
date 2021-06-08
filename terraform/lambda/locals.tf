@@ -5,6 +5,5 @@ locals {
      content = {
        variables = environment.value.variables
      }
-   }
  }
 }
