@@ -15,7 +15,7 @@ resource "aws_lambda_function" "lambda" {
   s3_key                         = var.artifact_zip_key
   
   # Dynatrace extension
-  layers = concat(var.lambda_layers, var.dynatrace_layer)
+  layers = var.dynatrace_enabled ? concat(var.lambda_layers, var.dynatrace_layer) : var.lambda_layers
   
   # Add dynamic blocks based on variables.
 
