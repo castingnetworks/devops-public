@@ -1,0 +1,33 @@
+apiVersion: v1
+data:
+  mapAccounts: |
+    []
+  mapRoles: |
+    - groups:
+      - system:masters
+      - system:bootstrappers
+      rolearn: arn:aws:iam::541517706354:role/tf-ci-harness-role
+      username: harness
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::541517706354:role/cfi-ci-eks-workers-role
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - "groups":
+      - "system:masters"
+      "userarn": "arn:aws:iam::541517706354:user/taylor.kozakar@castingnetworks.com"
+      "username": "taylor.kozakar"
+    - "groups":
+      - "system:masters"
+      "userarn": "arn:aws:iam::541517706354:user/jeremy.malara@castingnetworks.com"
+      "username": "jeremy_malara"
+    - "groups":
+      - "cfi:developers"
+      "userarn": "arn:aws:iam::541517706354:user/evanb"
+      "username": "evanb"
+kind: ConfigMap
+metadata:
+  annotations:
+  name: aws-auth
+  namespace: kube-system
