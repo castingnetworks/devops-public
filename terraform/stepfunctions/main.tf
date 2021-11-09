@@ -3,4 +3,5 @@ resource "aws_sfn_state_machine" "state_machine" {
   role_arn   = aws_iam_role.iam_for_sfn.arn
   definition = var.definition
   tags       = var.tags
+  type       = var.type
 }
