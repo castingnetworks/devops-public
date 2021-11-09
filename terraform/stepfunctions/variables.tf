@@ -15,4 +15,19 @@ variable "definition" {
 variable "policy_json" {
   type    = string
   default = null
+  description = "(Deprecated) Use 'policy' variable instead"
+}
+
+variable "policy" {
+  description = "An additional policy to attach to the State machine role"
+  type = object({
+    json = string
+  })
+  default = null
+}
+
+variable "type" {
+  type        = string
+  default     = "STANDARD"
+  description = "(Optional) Determines whether a Standard or Express state machine is created. The default is 'STANDARD'. You cannot update the type of a state machine once it has been created. Valid values: 'STANDARD', 'EXPRESS'"
 }

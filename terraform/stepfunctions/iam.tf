@@ -39,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "state_policy_attach" {
 }
 
 data "aws_iam_policy_document" "sfn_policy_document" {
-  source_json = var.policy_json
+  source_json = var.policy != null ? var.policy.json : var.policy_json
 
   statement {
     actions   = [
