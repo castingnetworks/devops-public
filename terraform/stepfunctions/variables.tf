@@ -34,16 +34,16 @@ variable "type" {
 
 variable "logging" {
   type = object({
-    level = string
-    log_destination = string
-    include_execution_data = bool
+    level = optional(string)
+    log_destination = optional(string)
+    include_execution_data = optional(string)
   })
   default = null
 }
 
 variable "tracing" {
   type = object({
-    enabled = bool
+    enabled = optional(bool)
   })
   default = null
 }
