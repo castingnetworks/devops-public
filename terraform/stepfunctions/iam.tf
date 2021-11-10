@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "state_policy_attach" {
   policy_arn = aws_iam_policy.sfn.arn
 }
 
-resource "aws_iam_role_policy_attachment" "state_policy_attach" {
+resource "aws_iam_role_policy_attachment" "logs_state_policy_attach" {
   role       = aws_iam_role.iam_for_sfn.name
   policy_arn = aws_iam_policy.sfn_logs.arn
 }
