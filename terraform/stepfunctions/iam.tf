@@ -31,11 +31,39 @@ resource "aws_iam_policy" "sfn" {
   policy = data.aws_iam_policy_document.sfn_policy_document.json
 }
 
+resource "aws_iam_policy" "sfn_logs" {
+  name   = "tf-${var.name}-logs-policy"
+  policy = data.aws_iam_policy_document.sfn_logs_policy_document.json
+}
+
 // Attach Policy
 
 resource "aws_iam_role_policy_attachment" "state_policy_attach" {
   role       = aws_iam_role.iam_for_sfn.name
   policy_arn = aws_iam_policy.sfn.arn
+}
+
+resource "aws_iam_role_policy_attachment" "logs_state_policy_attach" {
+  role       = aws_iam_role.iam_for_sfn.name
+  policy_arn = aws_iam_policy.sfn_logs.arn
+}
+
+data "aws_iam_policy_document" "sfn_logs_policy_document" {
+  statement {
+    actions = [
+      "logs:CreateLogDelivery",
+      "logs:GetLogDelivery",
+      "logs:UpdateLogDelivery",
+      "logs:DeleteLogDelivery",
+      "logs:ListLogDeliveries",
+      "logs:PutResourcePolicy",
+      "logs:DescribeResourcePolicies",
+      "logs:DescribeLogGroups"
+    ]
+    resources = [
+      "*"
+    ]
+  }
 }
 
 data "aws_iam_policy_document" "sfn_policy_document" {

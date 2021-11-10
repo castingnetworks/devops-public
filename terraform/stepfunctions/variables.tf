@@ -38,12 +38,6 @@ variable "log_level" {
   description = "(Optional) Defines which category of execution history events are logged. Valid values: ALL, ERROR, FATAL, OFF"
 }
 
-variable "log_destination" {
-  type        = string
-  default     = null
-  description = "(Optional) Amazon Resource Name (ARN) of a CloudWatch log group. Make sure the State Machine has the correct IAM policies for logging. The ARN must end with :*"
-}
-
 variable "include_execution_data" {
   type        = bool
   default     = false
