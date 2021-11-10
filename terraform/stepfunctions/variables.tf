@@ -36,7 +36,7 @@ variable "logging" {
   type = object({
     level = optional(string)
     log_destination = optional(string)
-    include_execution_data = optional(string)
+    include_execution_data = optional(bool)
   })
   default = null
 }
