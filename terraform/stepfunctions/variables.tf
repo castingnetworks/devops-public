@@ -31,3 +31,19 @@ variable "type" {
   default     = "STANDARD"
   description = "(Optional) Determines whether a Standard or Express state machine is created. The default is 'STANDARD'. You cannot update the type of a state machine once it has been created. Valid values: 'STANDARD', 'EXPRESS'"
 }
+
+variable "logging" {
+  type = object({
+    level = string
+    log_destination = string
+    include_execution_data = bool
+  })
+  default = null
+}
+
+variable "tracing" {
+  type = object({
+    enabled = bool
+  })
+  default = null
+}
