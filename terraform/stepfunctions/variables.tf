@@ -49,9 +49,3 @@ variable "include_execution_data" {
   default     = false
   description = "(Optional) Determines whether execution data is included in your log. When set to false, data is excluded."
 }
-
-variable "tracing_enabled" {
-  type        = bool
-  default     = false
-  description = "(Optional) When set to true, AWS X-Ray tracing is enabled. Make sure the State Machine has the correct IAM policies for logging."
-}
