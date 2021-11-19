@@ -84,7 +84,7 @@ data "aws_iam_policy_document" "sfn_policy_document" {
   statement {
     actions   = [
       "states:DescribeExecution",
-      "states:StopExecution"
+      "states:StopExecution",
       "events:PutTargets",
       "events:PutRule",
       "events:DescribeRule"
