@@ -58,7 +58,10 @@ data "aws_iam_policy_document" "sfn_logs_policy_document" {
       "logs:ListLogDeliveries",
       "logs:PutResourcePolicy",
       "logs:DescribeResourcePolicies",
-      "logs:DescribeLogGroups"
+      "logs:DescribeLogGroups",
+      "events:PutTargets",
+      "events:PutRule",
+      "events:DescribeRule"
     ]
     resources = [
       "*"
