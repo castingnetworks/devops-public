@@ -85,6 +85,9 @@ data "aws_iam_policy_document" "sfn_policy_document" {
     actions   = [
       "states:DescribeExecution",
       "states:StopExecution"
+      "events:PutTargets",
+      "events:PutRule",
+      "events:DescribeRule"
     ]
     resources = [
       "*",
