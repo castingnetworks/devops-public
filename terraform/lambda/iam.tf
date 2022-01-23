@@ -28,7 +28,7 @@ resource "aws_iam_role" "lambda" {
 locals {
   lambda_log_group_arn      = "arn:${data.aws_partition.current.partition}:logs:*:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.function_name}"
   lambda_edge_log_group_arn = "arn:${data.aws_partition.current.partition}:logs:*:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/us-west-2.${var.function_name}"
-  log_group_arns            = slice(list(local.lambda_log_group_arn, local.lambda_edge_log_group_arn), 0, var.lambda_at_edge ? 2 : 1)
+  log_group_arns            = slice(tolist([local.lambda_log_group_arn, local.lambda_edge_log_group_arn]), 0, var.lambda_at_edge ? 2 : 1)
 }
 
 data "aws_iam_policy_document" "logs" {
