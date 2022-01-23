@@ -3,6 +3,26 @@ variable "function_name" {
   type = string
 }
 
+variable "dynatrace_enabled" {
+  type = bool
+  default = true
+}
+
+variable "lambda_layers" {
+  type = list(string)
+  default = []
+}
+
+variable "dynatrace_layer" {
+  type = string
+  default = "725887861453:layer:Dynatrace_OneAgent_1_215_1_20210326-040705_nodejs:1"
+}
+
+variable "dynatrace_config" {
+  type = map
+  default = {}
+}
+
 variable "handler" {
   type = string
 }

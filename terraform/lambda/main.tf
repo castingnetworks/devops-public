@@ -14,6 +14,8 @@ resource "aws_lambda_function" "lambda" {
   s3_bucket                      = var.artifact_bucket
   s3_key                         = var.artifact_zip_key
   
+  # Dynatrace extension
+  layers = var.dynatrace_enabled ? concat(var.lambda_layers, ["arn:aws:lambda:${data.aws_region.current.name}:${var.dynatrace_layer}"]) : var.lambda_layers
   
   # Add dynamic blocks based on variables.
 
@@ -23,6 +25,7 @@ resource "aws_lambda_function" "lambda" {
       target_arn = dead_letter_config.value.target_arn
     }
   }
+  
 
   dynamic "environment" {
     for_each = var.environment == null ? [] : [var.environment]
