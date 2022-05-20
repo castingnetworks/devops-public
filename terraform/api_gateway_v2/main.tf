@@ -66,5 +66,3 @@ resource "aws_apigatewayv2_integration" "api" {
   target    = "integrations/${aws_apigatewayv2_integration.api_integration.id}"
 }
 
-}
-
