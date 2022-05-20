@@ -55,7 +55,7 @@ resource "aws_apigatewayv2_integration" "api_integration" {
   response_parameters {
     status_code = 301
     mappings = {
-      "overwrite:header.Cache-Control" = "private,no-cache-no-store"
+      "overwrite:header.Cache-Control" = "private, no-cache, no-store"
     }
   }
 }
