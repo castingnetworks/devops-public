@@ -44,7 +44,7 @@ resource "aws_route53_record" "api" {
 resource "aws_apigatewayv2_integration" "api" {
   api_id           = aws_apigatewayv2_api.api.id
   description      = "Integration"
-  integration_type = "AWS"
+  integration_type = "AWS_PROXY"
   integration_uri  = var.lambda_arn
 
   integration_method = "POST"
