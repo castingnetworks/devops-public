@@ -47,7 +47,7 @@ resource "aws_apigatewayv2_integration" "api_integration" {
   description      = "Integration"
   integration_type = "AWS_PROXY"
   integration_uri  = var.lambda_arn
-
+  payload_format_version = "2.0"
   integration_method = "ANY"
   connection_type    = "INTERNET"
   
