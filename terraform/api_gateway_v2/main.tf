@@ -4,6 +4,13 @@ resource "aws_apigatewayv2_api" "api" {
   description   = var.name
   target        = var.lambda_arn
   tags          = var.tags
+  
+  response_parameters {
+    status_code = 301
+    mappings = {
+      "overwrite:header.Cache-Control" = "private,no-cache-no-store"
+    }
+  }
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
