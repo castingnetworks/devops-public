@@ -48,7 +48,7 @@ resource "aws_apigatewayv2_integration" "api_integration" {
   integration_type = "AWS_PROXY"
   integration_uri  = var.lambda_arn
 
-  integration_method = "POST"
+  integration_method = "ANY"
   connection_type    = "INTERNET"
   
   
@@ -62,7 +62,7 @@ resource "aws_apigatewayv2_integration" "api_integration" {
   
  resource "aws_apigatewayv2_route" "default_route" {
   api_id    = aws_apigatewayv2_api.api.id
-  route_key = "POST /"
+  route_key = "ANY /"
   target    = "integrations/${aws_apigatewayv2_integration.api_integration.id}"
 }
 
