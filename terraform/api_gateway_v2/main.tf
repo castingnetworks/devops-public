@@ -62,7 +62,7 @@ resource "aws_apigatewayv2_integration" "api_integration" {
   
  resource "aws_apigatewayv2_route" "default_route" {
   api_id    = aws_apigatewayv2_api.api.id
-  route_key = "nocache"
+  route_key = "POST /"
   target    = "integrations/${aws_apigatewayv2_integration.api_integration.id}"
 }
 
