@@ -58,6 +58,7 @@ resource "aws_apigatewayv2_integration" "api" {
       "overwrite:header.Cache-Control" = "private,no-cache-no-store"
     }
   }
+}
   
  resource "aws_apigatewayv2_route" "default_route" {
   api_id    = aws_apigatewayv2_api.api.id
