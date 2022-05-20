@@ -5,12 +5,6 @@ resource "aws_apigatewayv2_api" "api" {
   target        = var.lambda_arn
   tags          = var.tags
   
-  response_parameters {
-    status_code = 301
-    mappings = {
-      "overwrite:header.Cache-Control" = "private,no-cache-no-store"
-    }
-  }
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
@@ -64,6 +58,12 @@ resource "aws_apigatewayv2_integration" "api" {
       "overwrite:header.Cache-Control" = "private,no-cache-no-store"
     }
   }
+  
+ resource "aws_apigatewayv2_route" "default_route" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "$default"
+  target    = "integrations/${aws_apigatewayv2_integration.api_integration.id}"
+}
 
 }
 
