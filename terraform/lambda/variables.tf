@@ -53,8 +53,8 @@ variable "policy" {
 
 variable "trusted_entities" {
   description = "Lambda function additional trusted entities for assuming roles (trust relationship)"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 locals {
@@ -105,7 +105,7 @@ variable "timeout" {
 }
 
 variable "batch_size" {
-  type = number
+  type    = number
   default = null
 }
 
@@ -134,12 +134,12 @@ variable "tracing_config" {
 
 variable "vpc_config" {
   type = object({
-    env_tag       = string
-    env_value     = string
-    subnet_tag    = string
-    subnet_value  = string
-    sg_tag        = string
-    sg_value      = string
+    env_tag      = string
+    env_value    = string
+    subnet_tag   = string
+    subnet_value = string
+    sg_tag       = string
+    sg_value     = string
   })
   default = null
 }
