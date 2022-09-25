@@ -272,6 +272,7 @@ data "aws_iam_policy_document" "elb_log_delivery" {
 }
 
 resource "aws_s3_bucket_policy" "this_nodelete" {
+  count = var.attach_policy ? 0 : 1
   bucket = aws_s3_bucket.this[0].id
 
   policy = <<POLICY
