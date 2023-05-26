@@ -5,7 +5,7 @@ resource "random_id" "salt" {
 resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = var.name
   replication_group_description = var.description
-  number_cache_clusters         = var.redis_clusters
+  num_cache_clusters            = var.redis_clusters
   node_type                     = var.redis_node_type
   automatic_failover_enabled    = var.redis_clusters > 1 ? true : false
   engine_version                = var.redis_version
