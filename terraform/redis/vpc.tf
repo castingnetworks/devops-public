@@ -4,8 +4,12 @@ data "aws_vpc" "redis" {
   }
 }
 
-data "aws_subnet_ids" "redis" {
-  vpc_id = data.aws_vpc.redis.id
+data "aws_subnets" "redis" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.redis.id]
+  }
+
   tags = {
     (var.vpc_config.subnet_tag) = var.vpc_config.subnet_value
   }

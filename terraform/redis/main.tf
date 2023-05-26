@@ -49,5 +49,5 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
   count   = var.subnet_group_override == null ? 1 : 0
   name       = var.name_prefix
   description = "Managed by Terraform"
-  subnet_ids = data.aws_subnet_ids.redis.ids
+  subnet_ids = data.aws_subnets.redis.ids
 }
