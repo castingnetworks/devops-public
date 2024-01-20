@@ -31,6 +31,7 @@ resource "aws_apigatewayv2_api_mapping" "api" {
 }
 
 resource "aws_route53_record" "api" {
+  provider  = aws.root
   zone_id = var.route53_zone_id
   name    = aws_apigatewayv2_domain_name.api.domain_name
   type    = "A"
