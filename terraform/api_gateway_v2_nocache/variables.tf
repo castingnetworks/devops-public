@@ -33,3 +33,4 @@ variable "tags" {
   default = null
 }
 
+variable "region" { default = "us-west-2" }
