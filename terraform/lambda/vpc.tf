@@ -5,9 +5,13 @@ data "aws_vpc" "lambda" {
   }
 }
 
-data "aws_subnet_ids" "lambda" {
-  count   = var.vpc_config == null ? 0 : 1
-  vpc_id = data.aws_vpc.lambda[0].id
+data "aws_subnets" "lambda" {
+  count = var.vpc_config == null ? 0 : 1
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.lambda[0].id]
+  }
+
   tags = {
     (var.vpc_config.subnet_tag) = var.vpc_config.subnet_value
   }

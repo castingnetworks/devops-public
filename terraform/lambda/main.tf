@@ -45,7 +45,7 @@ resource "aws_lambda_function" "lambda" {
     for_each = var.vpc_config == null ? [] : [var.vpc_config]
     content {
       security_group_ids = data.aws_security_groups.lambda[0].ids
-      subnet_ids         = data.aws_subnet_ids.lambda[0].ids
+      subnet_ids         = data.aws_subnets.lambda[0].ids
     }
   }
 }
