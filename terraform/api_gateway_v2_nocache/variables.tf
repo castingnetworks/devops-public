@@ -34,3 +34,7 @@ variable "tags" {
 }
 
 variable "region" { default = "us-west-2" }
+
+variable "role_arn" {
+  default = "arn:aws:iam::463546384433:role/terraform-xaccount"
+}

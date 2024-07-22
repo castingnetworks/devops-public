@@ -7,7 +7,7 @@ provider "aws" {
   alias  = "root"
   region = var.region
   assume_role {
-    role_arn     = "arn:aws:iam::463546384433:role/terraform-xaccount"
+    role_arn     = var.role_arn
     session_name = "terraform-xaccount"
     external_id  = "terraform"
   }
