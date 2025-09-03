@@ -9,7 +9,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
       - name: Lint Code Base
-        uses: docker://github/super-linter:v3
+        uses: docker://github/super-linter:v8.0.0
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
