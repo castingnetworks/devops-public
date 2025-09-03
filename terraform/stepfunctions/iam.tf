@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "sfn_assume_role_policy_document" {
     ]
 
     principals {
-      type        = "Service"
+      type = "Service"
       identifiers = [
         "states.amazonaws.com"
       ]
@@ -70,10 +70,12 @@ data "aws_iam_policy_document" "sfn_logs_policy_document" {
 }
 
 data "aws_iam_policy_document" "sfn_policy_document" {
-  source_json = var.policy != null ? var.policy.json : var.policy_json
+  source_policy_documents = [
+    var.policy != null ? var.policy.json : var.policy_json
+  ]
 
   statement {
-    actions   = [
+    actions = [
       "states:StartExecution"
     ]
     resources = [
@@ -82,7 +84,7 @@ data "aws_iam_policy_document" "sfn_policy_document" {
   }
 
   statement {
-    actions   = [
+    actions = [
       "states:DescribeExecution",
       "states:StopExecution",
       "events:PutTargets",
@@ -95,7 +97,7 @@ data "aws_iam_policy_document" "sfn_policy_document" {
   }
 
   statement {
-    actions   = [
+    actions = [
       "events:PutTargets",
       "events:PutRule",
       "events:DescribeRule"
