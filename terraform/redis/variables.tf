@@ -15,11 +15,11 @@ variable "alarm_actions" {
   type = "list"
 }
 */
-  
+
 variable "redis_parameter_group" {
   default = null
-  type = string
-  }
+  type    = string
+}
 
 variable "apply_immediately" {
   description = "Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false."
@@ -28,7 +28,7 @@ variable "apply_immediately" {
 }
 
 variable "subnet_group_override" {
-  type = string
+  type    = string
   default = null
 }
 
@@ -39,7 +39,7 @@ variable "name" {
 }
 
 variable "name_prefix" {
-  type        = string
+  type = string
 }
 
 variable "description" {
@@ -67,7 +67,7 @@ variable "redis_port" {
 
 
 variable "env" {
-  type    = string
+  type = string
 }
 
 // So this is where we add corporate network access to redis.  I'm defaulting to 127.0.0.1 if
@@ -131,12 +131,12 @@ variable "transit_encryption_enabled" {
 
 variable "vpc_config" {
   type = object({
-    env_tag       = string
-    env_value     = string
-    subnet_tag    = string
-    subnet_value  = string
-    sg_tag        = string
-    sg_value      = string
+    env_tag      = string
+    env_value    = string
+    subnet_tag   = string
+    subnet_value = string
+    sg_tag       = string
+    sg_value     = string
   })
   default = null
 }

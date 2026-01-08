@@ -31,46 +31,46 @@ resource "aws_security_group_rule" "redis_egress" {
 }
 
 resource "aws_security_group_rule" "redis_networks_ingress" {
-  type              = "ingress"
-  from_port         = var.redis_port
-  to_port           = var.redis_port
-  protocol          = "tcp"
-  cidr_blocks       = [
+  type      = "ingress"
+  from_port = var.redis_port
+  to_port   = var.redis_port
+  protocol  = "tcp"
+  cidr_blocks = [
     data.aws_vpc.redis.cidr_block
   ]
   security_group_id = aws_security_group.redis_security_group.id
 }
 
 resource "aws_security_group_rule" "redis_networks_egress" {
-  type              = "egress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  cidr_blocks       = [
+  type      = "egress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
+  cidr_blocks = [
     data.aws_vpc.redis.cidr_block
   ]
   security_group_id = aws_security_group.redis_security_group.id
 }
 
 resource "aws_security_group_rule" "redis_cadditional_cidr_ingress" {
-  count   = var.additional_cidr_ingress == null ? 0 : 1
-  type              = "ingress"
-  from_port         = var.redis_port
-  to_port           = var.redis_port
-  protocol          = "tcp"
-  cidr_blocks       = [
+  count     = var.additional_cidr_ingress == null ? 0 : 1
+  type      = "ingress"
+  from_port = var.redis_port
+  to_port   = var.redis_port
+  protocol  = "tcp"
+  cidr_blocks = [
     var.additional_cidr_ingress
   ]
   security_group_id = aws_security_group.redis_security_group.id
 }
 
 resource "aws_security_group_rule" "redis_cadditional_cidr_egress" {
-  count   = var.additional_cidr_ingress == null ? 0 : 1
-  type              = "egress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  cidr_blocks       = [
+  count     = var.additional_cidr_ingress == null ? 0 : 1
+  type      = "egress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
+  cidr_blocks = [
     var.additional_cidr_ingress
   ]
   security_group_id = aws_security_group.redis_security_group.id

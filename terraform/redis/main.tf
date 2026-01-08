@@ -3,25 +3,25 @@ resource "random_id" "salt" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = var.name
-  replication_group_description = var.description
-  node_type                     = var.redis_node_type
-  automatic_failover_enabled    = var.redis_clusters > 1 ? true : false
-  engine_version                = var.redis_version
-  port                          = var.redis_port
-  parameter_group_name          = aws_elasticache_parameter_group.redis_parameter_group.name
-  subnet_group_name             = var.subnet_group_override == null ? aws_elasticache_subnet_group.redis_subnet_group[0].name : var.subnet_group_override
-  security_group_ids            = [aws_security_group.redis_security_group.id]
-  apply_immediately             = var.apply_immediately
-  maintenance_window            = var.redis_maintenance_window
-  snapshot_window               = var.redis_snapshot_window
-  snapshot_retention_limit      = var.redis_snapshot_retention_limit
-  tags                          = var.tags
-  at_rest_encryption_enabled    = var.at_rest_encryption_enabled
-  transit_encryption_enabled    = var.transit_encryption_enabled
-  num_node_groups         = 1
-  replicas_per_node_group = var.redis_clusters > 1 ? 1 : 0
-  
+  replication_group_id       = var.name
+  description                = var.description
+  node_type                  = var.redis_node_type
+  automatic_failover_enabled = var.redis_clusters > 1 ? true : false
+  engine_version             = var.redis_version
+  port                       = var.redis_port
+  parameter_group_name       = aws_elasticache_parameter_group.redis_parameter_group.name
+  subnet_group_name          = var.subnet_group_override == null ? aws_elasticache_subnet_group.redis_subnet_group[0].name : var.subnet_group_override
+  security_group_ids         = [aws_security_group.redis_security_group.id]
+  apply_immediately          = var.apply_immediately
+  maintenance_window         = var.redis_maintenance_window
+  snapshot_window            = var.redis_snapshot_window
+  snapshot_retention_limit   = var.redis_snapshot_retention_limit
+  tags                       = var.tags
+  at_rest_encryption_enabled = var.at_rest_encryption_enabled
+  transit_encryption_enabled = var.transit_encryption_enabled
+  num_node_groups            = 1
+  replicas_per_node_group    = var.redis_clusters > 1 ? 1 : 0
+
 
   lifecycle {
     ignore_changes = [number_cache_clusters]
@@ -49,8 +49,8 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  count   = var.subnet_group_override == null ? 1 : 0
-  name       = var.name_prefix
+  count       = var.subnet_group_override == null ? 1 : 0
+  name        = var.name_prefix
   description = "Managed by Terraform"
-  subnet_ids = data.aws_subnets.redis.ids
+  subnet_ids  = data.aws_subnets.redis.ids
 }
