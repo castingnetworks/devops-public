@@ -5,12 +5,11 @@ resource "random_id" "salt" {
 resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = var.name
   replication_group_description = var.description
-  number_cache_clusters         = var.redis_clusters
   node_type                     = var.redis_node_type
   automatic_failover_enabled    = var.redis_clusters > 1 ? true : false
   engine_version                = var.redis_version
   port                          = var.redis_port
-  parameter_group_name          = aws_elasticache_parameter_group.redis_parameter_group.id
+  parameter_group_name          = aws_elasticache_parameter_group.redis_parameter_group.name
   subnet_group_name             = var.subnet_group_override == null ? aws_elasticache_subnet_group.redis_subnet_group[0].name : var.subnet_group_override
   security_group_ids            = [aws_security_group.redis_security_group.id]
   apply_immediately             = var.apply_immediately
@@ -20,6 +19,11 @@ resource "aws_elasticache_replication_group" "redis" {
   tags                          = var.tags
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   transit_encryption_enabled    = var.transit_encryption_enabled
+  cluster_mode {
+    num_node_groups         = 1
+    replicas_per_node_group = var.redis_clusters > 1 ? 1 : 0
+  }
+
   lifecycle {
     ignore_changes = [number_cache_clusters]
   }
@@ -31,7 +35,7 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
   description = var.description
 
   # Strip the patch version from redis_version var
-  family = var.redis_parameter_group == null ? "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}" : var.redis_parameter_group
+  family = var.redis_parameter_group == null ? "redis${split(".", var.redis_version)[0]}" : var.redis_parameter_group
   dynamic "parameter" {
     for_each = var.redis_parameters
     content {
