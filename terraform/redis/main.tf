@@ -26,12 +26,13 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
-  name = "${var.name}-params"
+  name = "${var.name}-params-v${split(".", var.redis_version)[0]}"
 
   description = var.description
 
   # Strip the patch version from redis_version var
-  family = var.redis_parameter_group == null ? "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}" : var.redis_parameter_group
+  family = var.redis_parameter_group == null ? "redis${split(".", var.redis_version)[0]}" : var.redis_parameter_group
+
   dynamic "parameter" {
     for_each = var.redis_parameters
     content {
