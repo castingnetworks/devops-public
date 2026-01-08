@@ -26,7 +26,7 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
-  name = "${var.name}-params"
+  name = "${var.name}-params-v${split(".", var.redis_version)[0]}"
 
   description = var.description
 
