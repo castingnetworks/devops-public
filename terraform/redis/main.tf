@@ -6,7 +6,7 @@ resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = var.name
   replication_group_description = var.description
   node_type                     = var.redis_node_type
-  automatic_failover_enabled    = var.redis_clusters > 1 ? true : false
+  automatic_failover_enabled    = tonumber(var.redis_clusters) > 1 ? true : false
   engine_version                = var.redis_version
   port                          = var.redis_port
   parameter_group_name          = aws_elasticache_parameter_group.redis_parameter_group.name
@@ -21,7 +21,7 @@ resource "aws_elasticache_replication_group" "redis" {
   transit_encryption_enabled    = var.transit_encryption_enabled
   cluster_mode = {
     num_node_groups         = 1
-    replicas_per_node_group = var.redis_clusters > 1 ? 1 : 0
+    replicas_per_node_group = tonumber(var.redis_clusters) > 1 ? 1 : 0
   }
 
   lifecycle {
