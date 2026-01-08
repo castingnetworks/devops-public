@@ -23,9 +23,9 @@ resource "aws_elasticache_replication_group" "redis" {
   replicas_per_node_group    = var.redis_clusters > 1 ? 1 : 0
 
 
-  lifecycle {
-    ignore_changes = [number_cache_clusters]
-  }
+  #lifecycle {
+  #  ignore_changes = [number_cache_clusters]
+  #}
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
