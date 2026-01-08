@@ -19,7 +19,7 @@ resource "aws_elasticache_replication_group" "redis" {
   tags                          = var.tags
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   transit_encryption_enabled    = var.transit_encryption_enabled
-  cluster_mode {
+  cluster_mode = {
     num_node_groups         = 1
     replicas_per_node_group = var.redis_clusters > 1 ? 1 : 0
   }
