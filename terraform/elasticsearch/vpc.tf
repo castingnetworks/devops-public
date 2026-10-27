@@ -5,9 +5,12 @@ data "aws_vpc" "es" {
   }
 }
 
-data "aws_subnet_ids" "es" {
+data "aws_subnets" "es" {
   count   = var.vpc_config == null ? 0 : 1
-  vpc_id = data.aws_vpc.es[0].id
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.es[0].id]
+  }
   tags = {
     (var.vpc_config.subnet_tag) = var.vpc_config.subnet_value
   }
@@ -63,7 +66,7 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   
   domain_endpoint_options {
     enforce_https = true 
-    tls_security_policy = "Policy-Min-TLS-1-0-2019-07"
+    tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
   }
 
   cluster_config {
@@ -107,7 +110,7 @@ resource "aws_elasticsearch_domain" "es_vpc" {
   }
 
   vpc_options {
-    subnet_ids         = data.aws_subnet_ids.es[0].ids
+    subnet_ids         = data.aws_subnets.es[0].ids
     //security_group_ids = data.aws_security_groups.es[0].ids
     security_group_ids = [aws_security_group.es_security_group.id]
   }
