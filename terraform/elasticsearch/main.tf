@@ -67,6 +67,10 @@ resource "aws_elasticsearch_domain" "es" {
     automated_snapshot_start_hour = var.snapshot_start_hour
   }
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     {
       "Domain" = local.domain_name
